@@ -6,11 +6,11 @@ import { Button } from '../components'
 
 const CarCard = ({ name, type, gas, transmission, people, price, originalPrice, image, favorite }) => {
     return (
-        <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-md md:max-w-sm mx-auto md:mx-0'>
+        <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-md md:max-w-sm mx-auto md:mx-0 md:flex md:flex-col md:justify-between'>
             <div className='flex items-start justify-between'>
                 <div className='flex flex-col gap-1'>
                     <h2 className='font-medium text-[#1A202C] text-xl'>{name}</h2>
-                    <h3 className='text-[#90A3BF] font-light text-sm'>{type}</h3>
+                    <h3 className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>{type}</h3>
                 </div>
                 {favorite ? <AiFillHeart className='text-2xl text-[#ED3F3F]' /> : <AiOutlineHeart className='text-2xl text-[#90A3BF]' />}
             </div>
@@ -33,10 +33,10 @@ const CarCard = ({ name, type, gas, transmission, people, price, originalPrice, 
             </div>
             <div className='flex items-center justify-between'>
                 <div className='flex flex-col gap-1'>
-                    <p className='text-[#1A202C] font-bold text-xl'>{price}/ <span className='text-[#90A3BF] font-light text-sm'>day</span></p>
-                    <p className='text-[#90A3BF] font-light text-sm line-through'>{originalPrice}</p>
+                    <p className='text-[#1A202C] font-bold text-xl md:text-2xl'>{price}/ <span className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>day</span></p>
+                    <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>{originalPrice}</p>
                 </div>
-                <Button text='Rental Now' />
+                <Button text='Rent Now' />
             </div>
         </div>
     )

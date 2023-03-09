@@ -7,8 +7,10 @@ import Button from './Button';
 import CarCard from './CarCard';
 import Sidebar from './Sidebar';
 import Filter from './Filter';
+import Footer from './Footer';
 
 export {
+    Footer,
     Filter,
     Sidebar,
     CarCard,
