@@ -39,11 +39,13 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-between mt-12 font-bold text-sm'>
-                <p>Privacy & Policy</p>
-                <p>Terms & Conditions</p>
+            <div className='flex flex-col md:flex-row-reverse justify-between'>
+                <div className='flex justify-between mt-12 font-bold text-sm md:text-lg md:gap-[60px]'>
+                    <p>Privacy & Policy</p>
+                    <p>Terms & Conditions</p>
+                </div>
+                <p className='font-bold text-sm md:text-lg mt-8 pb-6 md:pb-[60px]'>©2022 MORENT. All rights reserved</p>
             </div>
-            <p className='font-bold text-sm mt-8 pb-6'>©2022 MORENT. All rights reserved</p>
         </div>
     )
 }

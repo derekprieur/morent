@@ -2,7 +2,7 @@ import { Hero } from '../components'
 
 const Home = () => {
     return (
-        <div className='bg-background h-screen'>
+        <div className='bg-background h-full'>
             <Hero />
         </div>
     )

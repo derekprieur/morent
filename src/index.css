@@ -9,3 +9,7 @@
     /* font-family: 'Courier New', Courier, monospace; */
     font-family: 'roboto', sans-serif;
 }
+
+.hide-scroll::-webkit-scrollbar {
+    display: none;
+}

@@ -1,4 +1,14 @@
-import { car1, car2, car3, car4, car5, car6, car7 } from "../assets"
+import {
+    car1,
+    car2,
+    car3,
+    car4,
+    car5,
+    car6,
+    car7,
+    car8,
+    car9,
+} from "../assets"
 
 export const cars = [
     {
@@ -124,4 +134,38 @@ export const capacityFilters = [
         count: 16,
         checked: true,
     }
+]
+
+export const popularCars = [
+    {
+        name: 'Koenigsegg',
+        type: 'Sport',
+        gas: '90L',
+        transmission: 'Manual',
+        people: '2',
+        price: '$99.00',
+        image: car8,
+        favorite: true,
+    },
+    {
+        name: 'Nissan GT - R',
+        type: 'Sport',
+        gas: '80L',
+        transmission: 'Manual',
+        people: '2',
+        price: '$80.00',
+        originalPrice: '$100.00',
+        image: car9,
+        favorite: false,
+    },
+    {
+        name: 'Rolls - Royce',
+        type: 'Sedan',
+        gas: '70L',
+        transmission: 'Manual',
+        people: '4',
+        price: '$96.00',
+        image: car6,
+        favorite: true,
+    },
 ]

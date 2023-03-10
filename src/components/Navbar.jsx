@@ -5,7 +5,7 @@ import { morent, morentLarge, avatar, avatarLarge } from '../assets'
 
 const Navbar = () => {
     return (
-        <div className="px-6 md:px-[60px] py-8 md:py-10 bg-white">
+        <div className="px-6 md:px-[60px] pt-8 pb-36 md:py-10 bg-white">
             <div className="flex justify-between mb-8 md:mb-0 items-center">
                 <img src={morent} alt="car" className='object-contain flex md:hidden' />
                 <img src={morentLarge} alt="car" className='object-contain hidden md:flex' />
