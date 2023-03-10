@@ -4,6 +4,7 @@ import morent from './morent.png';
 import morentLarge from './morent-large.png';
 import carCardLightBlue from './car-card-lightblue.png';
 import carCardLightBlueSmall from './car-card-lightblue-small.png';
+import carCardDarkBlue from './car-card-darkblue.png';
 import magnify from './magnify.png';
 import car1 from './car1.png';
 import car2 from './car2.png';
@@ -16,6 +17,7 @@ import car8 from './car8.png';
 import car9 from './car9.png';
 
 export {
+    carCardDarkBlue,
     car9,
     car8,
     car1,
