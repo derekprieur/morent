@@ -168,4 +168,15 @@ export const popularCars = [
         image: car6,
         favorite: true,
     },
+    {
+        name: 'Nissan GT - R',
+        type: 'Sport',
+        gas: '80L',
+        transmission: 'Manual',
+        people: '2',
+        price: '$80.00',
+        originalPrice: '$100.00',
+        image: car9,
+        favorite: false,
+    },
 ]

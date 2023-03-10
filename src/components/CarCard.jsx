@@ -71,7 +71,7 @@ const CarCard = ({ name, type, gas, transmission, people, price, originalPrice, 
                     <p className='text-[#1A202C] font-bold text-xl md:text-2xl'>{price}/ <span className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>day</span></p>
                     <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>{originalPrice}</p>
                 </div>
-                <Button text='Rent Now' />
+                {page != 'profile' && <Button text='Rent Now' />}
             </div>
         </div>
     )

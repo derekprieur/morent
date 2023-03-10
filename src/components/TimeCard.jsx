@@ -1,7 +1,7 @@
 import { MdKeyboardArrowDown } from 'react-icons/md'
 const TimeCard = ({ text, date, time }) => {
     return (
-        <div className='bg-white w-full rounded-[10px] p-4 max-w-md md:max-w-7xl mx-auto'>
+        <div className='bg-white w-full rounded-[10px] p-4 max-w-md md:max-w-2xl'>
             <div className='flex items-center gap-2 mb-6'>
                 {text === 'Pick-Up' ? (
                     <div className='w-4 h-4 rounded-full flex items-center justify-center bg-[#3563E94D]'>

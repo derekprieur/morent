@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Button, CarCard, HeroCard, TimeCard } from '../components'
 import { popularCars, cars } from '../constants/carList'
 
@@ -12,7 +13,7 @@ const Hero = () => {
                 <HeroCard alt />
             </div>
             <div className='px-6 md:px-0'>
-                <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex flex-col md:flex-row relative items-center'>
+                <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex flex-col md:flex-row relative items-center '>
                     <TimeCard text='Pick-Up' date='20 July 2022' time='07:00' />
                     <div className='absolute md:hidden top-32 flex justify-center'>
                         <Button text='arrows' />
@@ -24,16 +25,23 @@ const Hero = () => {
                 </div>
                 <div className='flex justify-between mt-8 md:mt-11 mb-5'>
                     <p className=' text-[#90A3BF] font-normal md:text-lg md:ml-5'>Popular Cars</p>
-                    <button className=' text-[#3563E9] font-medium text-sm'>View All</button>
+                    <Link to='/rent'>
+                        <button className=' text-[#3563E9] font-medium text-sm md:text-lg'>View All</button>
+                    </Link>
                 </div>
-                <div className='flex gap-5 overflow-x-scroll hide-scroll'>
+                <div className='flex gap-5 md:gap-8 overflow-x-scroll hide-scroll'>
                     {popularCars.map((car, index) => (
                         <CarCard key={index} {...car} page='home' />
                     ))}
                 </div>
-                <p className=' text-[#90A3BF] font-normal mt-8 mb-5'>Recommended Cars</p>
-                <div className='flex flex-col gap-5'>
+                <p className=' text-[#90A3BF] font-normal mt-8 mb-5 md:text-lg md:ml-5'>Recommended Cars</p>
+                <div className='flex flex-col gap-5 md:hidden'>
                     {cars.slice(0, 5).map((car, index) => (
+                        <CarCard key={index} {...car} />
+                    ))}
+                </div>
+                <div className='flex-row flex-wrap gap-8 hidden md:flex'>
+                    {cars.slice(0, 8).map((car, index) => (
                         <CarCard key={index} {...car} />
                     ))}
                 </div>
