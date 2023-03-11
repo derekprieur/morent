@@ -8,8 +8,10 @@ import CarCard from './CarCard';
 import Sidebar from './Sidebar';
 import Filter from './Filter';
 import Footer from './Footer';
+import AddCarForm from './AddCarForm';
 
 export {
+    AddCarForm,
     Footer,
     Filter,
     Sidebar,

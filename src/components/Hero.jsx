@@ -8,12 +8,12 @@ const Hero = () => {
             <div className='absolute px-6 flex items-center w-full justify-center -top-28 md:hidden'>
                 <HeroCard size='small' />
             </div>
-            <div className='hidden md:flex mt-8 gap-8'>
+            <div className='hidden md:flex mt-8 gap-8 md:justify-center'>
                 <HeroCard size='large' />
                 <HeroCard alt />
             </div>
             <div className='px-6 md:px-0'>
-                <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex flex-col md:flex-row relative items-center '>
+                <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex flex-col md:flex-row relative items-center md:justify-center'>
                     <TimeCard text='Pick-Up' date='20 July 2022' time='07:00' />
                     <div className='absolute md:hidden top-32 flex justify-center'>
                         <Button text='arrows' />
