@@ -9,8 +9,10 @@ import Sidebar from './Sidebar';
 import Filter from './Filter';
 import Footer from './Footer';
 import AddCarForm from './AddCarForm';
+import Login from './Login';
 
 export {
+    Login,
     AddCarForm,
     Footer,
     Filter,
