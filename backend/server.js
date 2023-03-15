@@ -7,6 +7,12 @@ const jwt = require('jsonwebtoken');
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log('Middleware');
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 const users = [
     {
         id: '1',
@@ -61,6 +67,7 @@ app.post('/api/refresh', (req, res) => {
 });
 
 app.post('/api/login', (req, res) => {
+    console.log(req.body);
     const { username, password } = req.body;
     const user = users.find((user) => user.username === username && user.password === password);
     if (user) {
