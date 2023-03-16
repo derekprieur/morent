@@ -72,6 +72,17 @@ const Detail = () => {
                         ))}
                     </div>
                 </div>
+                <div className='flex justify-between mt-8 md:mt-11 mb-5'>
+                    <p className=' text-[#90A3BF] font-normal md:text-lg md:ml-5'>Recommended Cars</p>
+                    <button className=' text-[#3563E9] font-medium text-sm md:text-lg'>View All</button>
+                </div>
+                <div className='w-full overflow-hidden mb-12'>
+                    <div className='flex gap-5 md:gap-8 overflow-x-auto hide-scroll'>
+                        {popularCars.map((car, index) => (
+                            <CarCard key={index} {...car} page='home' />
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     )
