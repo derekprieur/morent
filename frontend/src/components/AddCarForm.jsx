@@ -65,7 +65,7 @@ const AddCarForm = () => {
                 <div className='w-full bg-[#EDEEF4] h-2 mt-3 rounded-xl'></div>
             </div>
             <div className='mt-10 flex w-full justify-end'>
-                <Button text='Rent Now' size='large' />
+                <Button text='Rent Now' size='large' rounded />
             </div>
         </div>
     )

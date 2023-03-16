@@ -17,8 +17,10 @@ import car8 from './car8.png';
 import car9 from './car9.png';
 import carBanner from './car-banner.png';
 import profilePic from './profile-pic.png';
+import detail1 from './detail1.png';
 
 export {
+    detail1,
     profilePic,
     carBanner,
     carCardDarkBlue,

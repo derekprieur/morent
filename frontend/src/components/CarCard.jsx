@@ -1,15 +1,18 @@
+import { useNavigate } from 'react-router-dom'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { RiGasStationFill } from 'react-icons/ri'
 import { GiSteeringWheel } from 'react-icons/gi'
 import { MdPeopleAlt } from 'react-icons/md'
+
 import { Button } from '../components'
 
 const CarCard = ({ name, type, gas, transmission, people, price, originalPrice, image, favorite, page }) => {
+    const navigate = useNavigate()
     if (page === 'home') return (
-        <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-xs md:max-w-sm md:mx-0 md:flex md:flex-col md:justify-between'>
+        <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-xs md:max-w-sm md:mx-0 md:flex md:flex-col md:justify-between' >
             <div className='flex items-start justify-between'>
                 <div className='flex flex-col gap-1'>
-                    <h2 className='font-medium text-[#1A202C] text-xl'>{name}</h2>
+                    <h2 className='font-medium text-[#1A202C] text-xl cursor-pointer' onClick={() => navigate(`/detail/${name}`)}>{name}</h2>
                     <h3 className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>{type}</h3>
                 </div>
                 {favorite ? <AiFillHeart className='text-2xl text-[#ED3F3F]' /> : <AiOutlineHeart className='text-2xl text-[#90A3BF]' />}
@@ -44,7 +47,7 @@ const CarCard = ({ name, type, gas, transmission, people, price, originalPrice, 
         <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-md md:max-w-sm mx-auto md:mx-0 md:flex md:flex-col md:justify-between'>
             <div className='flex items-start justify-between'>
                 <div className='flex flex-col gap-1'>
-                    <h2 className='font-medium text-[#1A202C] text-xl'>{name}</h2>
+                    <h2 className='font-medium text-[#1A202C] text-xl cursor-pointer' onClick={() => navigate(`/detail/${name}`)}>{name}</h2>
                     <h3 className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>{type}</h3>
                 </div>
                 {favorite ? <AiFillHeart className='text-2xl text-[#ED3F3F]' /> : <AiOutlineHeart className='text-2xl text-[#90A3BF]' />}

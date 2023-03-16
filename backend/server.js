@@ -4,14 +4,15 @@ const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
+
+app.use(cors({
+    origin: 'http://127.0.0.1:5173',
+})
+);
 app.use(express.json());
 
-app.use((req, res, next) => {
-    console.log('Middleware');
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
 
 const users = [
     {
@@ -67,7 +68,7 @@ app.post('/api/refresh', (req, res) => {
 });
 
 app.post('/api/login', (req, res) => {
-    console.log(req.body);
+    console.log('test login')
     const { username, password } = req.body;
     const user = users.find((user) => user.username === username && user.password === password);
     if (user) {
@@ -76,9 +77,10 @@ app.post('/api/login', (req, res) => {
         const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
         refreshTokens.push(refreshToken);
         console.log(refreshTokens);
-        res.json({ accessToken: accessToken, refreshToken: refreshToken });
+        res.json({ accessToken: accessToken, refreshToken: refreshToken, user: user });
     } else {
         res.status(400).json('username or password incorrect');
+        console.log('username or password incorrect');
     }
 });
 
