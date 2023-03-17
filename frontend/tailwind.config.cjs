@@ -9,6 +9,11 @@ module.exports = {
       colors: {
         background: '#F6F7F9',
       },
+      translate: {
+        '1/2': '50%',
+        '-1/2': '-50%',
+        '-110': '-110%',
+      },
     },
   },
   plugins: [],

@@ -5,7 +5,21 @@ const app = express();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
+mongoose.connect(`mongodb+srv://derekprieur:${process.env.MONGO_PASSWORD}@cluster0.ifyvnvu.mongodb.net/?retryWrites=true&w=majority`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((error) => console.error('Error connecting to MongoDB:', error));
+
+const userSchema = new mongoose.Schema({
+    username: String,
+    password: String,
+});
+
+const User = mongoose.model('User', userSchema);
 
 app.use(cors({
     origin: 'http://127.0.0.1:5173',
@@ -67,20 +81,43 @@ app.post('/api/refresh', (req, res) => {
     // if token is valid, create a new access token, refresh token, and send to the user
 });
 
-app.post('/api/login', (req, res) => {
-    console.log('test login')
+app.post('/api/login', async (req, res) => {
+    console.log('test login');
     const { username, password } = req.body;
-    const user = users.find((user) => user.username === username && user.password === password);
-    if (user) {
-        // generate access token
-        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
-        const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+
+    // Check if user already exists in the database
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+        // Check if the provided password matches the hashed password in the database
+        const isPasswordMatch = await bcrypt.compare(password, existingUser.password);
+
+        if (isPasswordMatch) {
+            // Generate access token
+            const accessToken = jwt.sign(existingUser.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+            const refreshToken = jwt.sign(existingUser.toJSON(), process.env.REFRESH_TOKEN_SECRET);
+            refreshTokens.push(refreshToken);
+            console.log(refreshTokens);
+
+            res.json({ accessToken: accessToken, refreshToken: refreshToken, user: existingUser });
+        } else {
+            res.status(400).json('username or password incorrect');
+            console.log('username or password incorrect');
+        }
+    } else {
+        // Hash the password before saving the new user
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // If user doesn't exist, create and save the new user with the hashed password
+        const newUser = new User({ username, password: hashedPassword });
+        await newUser.save();
+
+        // Generate access token
+        const accessToken = jwt.sign(newUser.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+        const refreshToken = jwt.sign(newUser.toJSON(), process.env.REFRESH_TOKEN_SECRET);
         refreshTokens.push(refreshToken);
         console.log(refreshTokens);
-        res.json({ accessToken: accessToken, refreshToken: refreshToken, user: user });
-    } else {
-        res.status(400).json('username or password incorrect');
-        console.log('username or password incorrect');
+
+        res.json({ accessToken: accessToken, refreshToken: refreshToken, user: newUser });
     }
 });
 
