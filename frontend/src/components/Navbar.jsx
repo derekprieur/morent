@@ -16,7 +16,7 @@ const Navbar = () => {
     const loginPageOpen = useSelector(state => state.auth.loginPageOpen)
     const dispatch = useDispatch()
     const authenticated = false
-    const notHomePage = location.pathname.includes('rent') || location.pathname.includes('profile') || location.pathname.includes('detail') || location.pathname.includes('login')
+    const notHomePage = location.pathname.includes('rent') || location.pathname.includes('profile') || location.pathname.includes('detail') || location.pathname.includes('login') || location.pathname.includes('add-car')
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false)
 
     const mobileMenuClasses = mobileMenuVisible
