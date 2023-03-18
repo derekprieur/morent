@@ -42,7 +42,7 @@ const Navbar = () => {
                             <Link to='/rent' onClick={() => dispatch(setCurrentPage('search cars'))}>
                                 <li className={`font-normal text-lg ${currentPage === 'search cars' ? 'text-[#3563E9]' : 'text-[#3D5278]'}`}>Search Cars</li>
                             </Link>
-                            <Link to='/add-car' onClick={() => dispatch(setCurrentPage('add car'))}>
+                            <Link to={user != null ? '/add-car' : '/login'} onClick={() => { user != null && dispatch(setCurrentPage('add car')) }}>
                                 <li className={`font-normal text-lg ${currentPage === 'add car' ? 'text-[#3563E9]' : 'text-[#3D5278]'}`}>Add Car</li>
                             </Link>
                         </ul>

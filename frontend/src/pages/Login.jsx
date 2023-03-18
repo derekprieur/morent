@@ -61,7 +61,7 @@ const Login = () => {
     }
 
     return (
-        <div className='h-screen w-full flex px-6'>
+        <div className='h-screen max-w-6xl w-full flex px-6 justify-center'>
             {showSignUp ? (
                 <form className='flex flex-col gap-4 w-full' onSubmit={handleSignUp}>
                     <h4 className='mt-8 text-[#3563E9] text-xl font-extrabold mb-6'>Sign Up</h4>
