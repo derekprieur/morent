@@ -1,6 +1,6 @@
 import { HiOutlineArrowNarrowUp, HiOutlineArrowNarrowDown } from 'react-icons/hi'
 
-const Button = ({ text, size, rounded, full, profileImage }) => {
+const Button = ({ text, size, rounded, full, profileImage, type }) => {
     if (text === 'My Profile') return (
         <button className='flex items-center justify-center gap-2 bg-[white] text-[#3563E9] py-4 rounded min-w-[100px] w-full text-center font-medium border border-[#C3D4E9]'>
             <img src={profileImage} alt="avatar" />
@@ -9,7 +9,7 @@ const Button = ({ text, size, rounded, full, profileImage }) => {
     )
     if (text === 'Login') {
         if (rounded) return (
-            <button className='bg-[#3563E9] text-white py-3 px-8 font-medium text-lg rounded-xl'>
+            <button type={type} className='bg-[#3563E9] text-white py-3 px-8 font-medium text-lg rounded-xl'>
                 {text}
             </button>
         )
@@ -35,7 +35,7 @@ const Button = ({ text, size, rounded, full, profileImage }) => {
         </button>)
 
     if (size === 'large') return (
-        <button className={`bg-[#3563E9] text-white py-4 px-8 font-medium text-lg ${rounded ? 'rounded-xl' : 'rounded'} ${full && 'w-full'}`}>{text}</button>
+        <button type='submit' className={`bg-[#3563E9] text-white py-4 px-8 font-medium text-lg ${rounded ? 'rounded-xl' : 'rounded'} ${full && 'w-full'}`}>{text}</button>
     )
     return (
         <button className='bg-[#3563E9] text-white py-[10px] px-5 rounded'>{text}</button>

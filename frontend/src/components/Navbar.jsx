@@ -60,9 +60,13 @@ const Navbar = () => {
                         <div className='flex md:hidden'>
                             <RxHamburgerMenu className='text-2xl text-[#3D5278] cursor-pointer' onClick={() => setMobileMenuVisible(prev => !prev)} />
                         </div>
-                        {user != null && <div className='hidden md:flex'>
-                            <LogoutButton />
-                        </div>}
+                        {user != null &&
+                            <Link to='/'>
+                                <div className='hidden md:flex' onClick={() => { dispatch(setUser(null)); dispatch(setCurrentPage('home')) }}>
+                                    <LogoutButton />
+                                </div>
+                            </Link>
+                        }
                         {
                             user === null &&
                             <Link to='/login' onClick={() => dispatch(setLoginPageOpen(true))} className='hidden md:flex'>

@@ -21,6 +21,21 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+const carSchema = new mongoose.Schema({
+    title: String,
+    brand: String,
+    rentPrice: Number,
+    capacity: Number,
+    type: String,
+    location: String,
+    pickupLocation: String,
+    dropOffLocation: String,
+    availabilityFrom: Date,
+    availabilityTo: Date,
+});
+
+const Car = mongoose.model('Car', carSchema);
+
 app.use(cors({
     origin: 'http://127.0.0.1:5173',
 })
@@ -104,20 +119,9 @@ app.post('/api/login', async (req, res) => {
             console.log('username or password incorrect');
         }
     } else {
-        // Hash the password before saving the new user
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // If user doesn't exist, create and save the new user with the hashed password
-        const newUser = new User({ username, password: hashedPassword });
-        await newUser.save();
-
-        // Generate access token
-        const accessToken = jwt.sign(newUser.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
-        const refreshToken = jwt.sign(newUser.toJSON(), process.env.REFRESH_TOKEN_SECRET);
-        refreshTokens.push(refreshToken);
-        console.log(refreshTokens);
-
-        res.json({ accessToken: accessToken, refreshToken: refreshToken, user: newUser });
+        // User not found, notify the user
+        res.status(400).json('username or password incorrect');
+        console.log('username or password incorrect');
     }
 });
 
@@ -127,12 +131,48 @@ app.post('/api/logout', verify, (req, res) => {
     res.status(200).json('Logged out');
 });
 
+app.post('/api/addcar', async (req, res) => {
+    const carData = req.body;
+    try {
+        const newCar = new Car(carData);
+        await newCar.save();
+        res.status(201).json(newCar);
+        console.log('Car added');
+    } catch (error) {
+        res.status(400).json({ message: 'Error adding car', error });
+        console.log('Error adding car');
+    }
+});
 
 app.delete('/api/users/:id', verify, (req, res) => {
     if (req.user.id === req.params.id) {
         res.status(200).json('User has been deleted');
     } else {
         res.status(403).json('You can delete only your account');
+    }
+});
+
+app.post('/api/signup', async (req, res) => {
+    const { username, password } = req.body;
+
+    // Check if the username already exists in the database
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+        res.status(400).json('Username already exists');
+    } else {
+        // Hash the password before saving the new user
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create and save the new user with the hashed password
+        const newUser = new User({ username, password: hashedPassword });
+        await newUser.save();
+
+        // Generate access and refresh tokens
+        const accessToken = jwt.sign(newUser.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+        const refreshToken = jwt.sign(newUser.toJSON(), process.env.REFRESH_TOKEN_SECRET);
+        refreshTokens.push(refreshToken);
+
+        res.json({ accessToken: accessToken, refreshToken: refreshToken, user: newUser });
     }
 });
 
