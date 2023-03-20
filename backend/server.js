@@ -1,18 +1,16 @@
 require('dotenv').config();
 
 const express = require('express');
-const app = express();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb+srv://derekprieur:${process.env.MONGO_PASSWORD}@cluster0.ifyvnvu.mongodb.net/?retryWrites=true&w=majority`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((error) => console.error('Error connecting to MongoDB:', error));
+const connectDB = require('./config/database');
+
+connectDB();
+
+const app = express();
 
 const userSchema = new mongoose.Schema({
     username: String,
@@ -157,6 +155,7 @@ app.post('/api/signup', async (req, res) => {
 
     // Check if the username already exists in the database
     const existingUser = await User.findOne({ username });
+    console.log(existingUser);
     if (existingUser) {
         res.status(400).json('Username already exists');
     } else {
