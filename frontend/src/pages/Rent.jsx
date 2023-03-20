@@ -31,7 +31,7 @@ const Rent = () => {
                 </div>
                 <div className='flex flex-col md:flex-row md:flex-wrap gap-5 md:gap-8'>
                     {carList.map((car, i) => (
-                        <CarCard key={car.name + i} {...car} />
+                        <CarCard key={car.title + i} {...car} />
                     ))}
                 </div>
                 <div className='flex justify-center pt-4 relative'>

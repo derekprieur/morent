@@ -9,7 +9,9 @@ const carListSlice = createSlice({
     initialState,
     reducers: {
         setCars: (state, action) => {
+            console.log('action.payload: ', action.payload);
             state.carList = action.payload;
+            console.log('state.carList: ', state.carList);
         },
     },
 });

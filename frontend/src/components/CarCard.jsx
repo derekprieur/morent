@@ -7,7 +7,7 @@ import { MdPeopleAlt } from 'react-icons/md'
 import { Button } from '../components'
 import { car1 } from '../assets'
 
-const CarCard = ({ name, type, gas, transmission, people, price, originalPrice, image, favorite, page, title, capacity, rentPrice }) => {
+const CarCard = ({ type, gas, transmission, originalPrice, favorite, page, title, capacity, rentPrice }) => {
 
     const navigate = useNavigate()
     if (page === 'home') return (
@@ -39,7 +39,7 @@ const CarCard = ({ name, type, gas, transmission, people, price, originalPrice, 
             <div className='flex items-center justify-between'>
                 <div className='flex flex-col gap-1'>
                     <p className='text-[#1A202C] font-bold text-xl md:text-2xl'>${rentPrice}.00/ <span className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>day</span></p>
-                    <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>{originalPrice}</p>
+                    <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>${originalPrice}.00</p>
                 </div>
                 <Button text='Rent Now' />
             </div>
@@ -74,7 +74,7 @@ const CarCard = ({ name, type, gas, transmission, people, price, originalPrice, 
             <div className='flex items-center justify-between'>
                 <div className='flex flex-col gap-1'>
                     <p className='text-[#1A202C] font-bold text-xl md:text-2xl'>${rentPrice}.00/ <span className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>day</span></p>
-                    <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>{originalPrice}</p>
+                    <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>${originalPrice}.00</p>
                 </div>
                 {page != 'profile' && <Button text='Rent Now' />}
             </div>

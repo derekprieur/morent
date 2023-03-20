@@ -13,13 +13,13 @@ const getCars = async () => {
 
 export const useFetchCarList = () => {
     const dispatch = useDispatch();
-    const carListState = useSelector((state) => state.carList);
+    const carList = useSelector((state) => state.carList);
 
     const fetchCarList = async () => {
-        const carList = await getCars();
-        console.log('carList fetchCarList: ', carList);
-        dispatch(setCars(carList));
-        console.log(carListState, 'carListState fetchCarList')
+        const carListFromDatabase = await getCars();
+        console.log('carList fetchCarList: ', carListFromDatabase);
+        dispatch(setCars(carListFromDatabase));
+        console.log('carList after dispatch: ', carList);
     };
 
     return fetchCarList;
