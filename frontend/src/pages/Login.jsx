@@ -34,19 +34,8 @@ const Login = () => {
     const handleSignUp = async (e) => {
         e.preventDefault()
         try {
-            const formData = new FormData();
-            formData.append('firstName', firstName);
-            formData.append('lastName', lastName);
-            formData.append('title', title);
-            formData.append('username', username);
-            formData.append('password', password);
-            formData.append('file', file);
-
-            const res = await axios.post('http://localhost:3000/api/signup', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            console.log(firstName, lastName, title, username, password, file)
+            const res = await axios.post('http://localhost:3000/api/signup', { username, password, firstName, lastName, title, file });
             dispatch(setUser(res.data.user))
             dispatch(setLoginPageOpen(false))
             navigate('/')
