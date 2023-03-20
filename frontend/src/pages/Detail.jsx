@@ -1,10 +1,21 @@
+import { useEffect } from 'react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 
 import { Button, CarCard, Sidebar } from '../components'
 import { detail1 } from '../assets'
-import { popularCars } from '../constants/carList'
+import { useFetchCarList } from '../utils/fetchCarList'
 
 const Detail = () => {
+    const { carList } = useSelector(state => state.carList)
+    const fetchCarList = useFetchCarList()
+
+    useEffect(() => {
+        if (!carList.length) {
+            fetchCarList()
+        }
+    }, [])
+
     return (
         <div className='flex bg-background h-full overflow-x-hidden'>
             <div className='hidden md:flex'>
@@ -71,12 +82,12 @@ const Detail = () => {
                 </div>
                 <div className='w-full overflow-hidden md:mx-8'>
                     <div className='flex md:hidden gap-5 md:gap-8 overflow-x-auto hide-scroll'>
-                        {popularCars.map((car, index) => (
+                        {carList.map((car, index) => (
                             <CarCard key={index} {...car} page='home' />
                         ))}
                     </div>
                     <div className='hidden md:flex gap-5 md:gap-8 overflow-x-auto hide-scroll'>
-                        {popularCars.slice(0, 3).map((car, index) => (
+                        {carList.slice(0, 3).map((car, index) => (
                             <CarCard key={index} {...car} page='home' />
                         ))}
                     </div>
@@ -87,12 +98,12 @@ const Detail = () => {
                 </div>
                 <div className='w-full overflow-hidden mb-12 md:mx-8'>
                     <div className='flex gap-5 md:gap-8 overflow-x-auto hide-scroll md:hidden'>
-                        {popularCars.map((car, index) => (
+                        {carList.map((car, index) => (
                             <CarCard key={index} {...car} page='home' />
                         ))}
                     </div>
                     <div className='hidden md:flex gap-5 md:gap-8 overflow-x-auto hide-scroll'>
-                        {popularCars.slice(0, 3).map((car, index) => (
+                        {carList.slice(0, 3).map((car, index) => (
                             <CarCard key={index} {...car} page='home' />
                         ))}
                     </div>

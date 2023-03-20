@@ -1,8 +1,21 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+
 import { Button, CarCard, HeroCard, TimeCard } from '../components'
 import { popularCars, cars } from '../constants/carList'
+import { useFetchCarList } from '../utils/fetchCarList'
 
 const Hero = () => {
+    const { carList } = useSelector(state => state.carList)
+    const fetchCarList = useFetchCarList()
+    console.log(carList)
+
+    useEffect(() => {
+        fetchCarList()
+        console.log(carList, 'carList')
+    }, [])
+
     return (
         <div className='relative flex flex-col md:px-16'>
             <div className='absolute px-6 flex items-center w-full justify-center -top-28 md:hidden'>
@@ -30,18 +43,18 @@ const Hero = () => {
                     </Link>
                 </div>
                 <div className='flex gap-5 md:gap-8 overflow-x-scroll hide-scroll'>
-                    {popularCars.map((car, index) => (
+                    {carList.map((car, index) => (
                         <CarCard key={index} {...car} page='home' />
                     ))}
                 </div>
                 <p className=' text-[#90A3BF] font-normal mt-8 mb-5 md:text-lg md:ml-5'>Recommended Cars</p>
                 <div className='flex flex-col gap-5 md:hidden'>
-                    {cars.slice(0, 5).map((car, index) => (
+                    {carList.slice(0, 5).map((car, index) => (
                         <CarCard key={index} {...car} />
                     ))}
                 </div>
                 <div className='flex-row flex-wrap gap-8 hidden md:flex'>
-                    {cars.slice(0, 8).map((car, index) => (
+                    {carList.slice(0, 8).map((car, index) => (
                         <CarCard key={index} {...car} />
                     ))}
                 </div>

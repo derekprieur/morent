@@ -33,7 +33,7 @@ const AddCarForm = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:3000/api/cars', carData);
+            const response = await axios.post('http://localhost:3000/api/addcar', carData);
             console.log(response.data);
         } catch (error) {
             console.error('Error adding car:', error);
@@ -49,42 +49,42 @@ const AddCarForm = () => {
                 <div className='flex flex-col md:flex-row gap-8'>
                     <div className='flex flex-col flex-1'>
                         <h3 className='font-medium text-lg mb-4'>Car Title</h3>
-                        <input placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                        <input required placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={title} onChange={(e) => setTitle(e.target.value)} />
                     </div>
                     <div className='flex flex-col flex-1'>
                         <h3 className='font-medium text-lg mb-4'>Car Brand</h3>
-                        <input placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                        <input required placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={brand} onChange={(e) => setBrand(e.target.value)} />
                     </div>
                 </div>
                 <div className='flex flex-col md:flex-row gap-8 mt-6'>
                     <div className='flex flex-col flex-1'>
                         <h3 className='font-medium text-lg mb-4'>Rent Price</h3>
-                        <input placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                        <input required placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={rentPrice} onChange={(e) => setRentPrice(e.target.value)} />
                     </div>
                     <div className='flex flex-col flex-1'>
                         <h3 className='font-medium text-lg mb-4'>Capacity</h3>
-                        <input placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                        <input required placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={capacity} onChange={(e) => setCapacity(e.target.value)} />
                     </div>
                 </div>
                 <div className='flex flex-col md:flex-row gap-8 mt-6'>
                     <div className='flex flex-col flex-1'>
-                        <h3 className='font-medium text-lg mb-4'>Cat Type</h3>
-                        <input placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                        <h3 className='font-medium text-lg mb-4'>Car Type</h3>
+                        <input required placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={type} onChange={(e) => setType(e.target.value)} />
                     </div>
                     <div className='flex flex-col flex-1'>
                         <h3 className='font-medium text-lg mb-4'>Location</h3>
-                        <input placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                        <input required placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={location} onChange={(e) => setLocation(e.target.value)} />
                     </div>
                 </div>
                 <h4 className='mt-8 text-[#3563E9] text-xl font-extrabold mb-6'>PICKUP INFO</h4>
                 <div className='flex flex-col md:flex-row gap-8'>
                     <div className='flex flex-col flex-1'>
                         <h3 className='font-medium text-lg mb-4'>Pickup Location</h3>
-                        <input placeholder='Your location' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                        <input required placeholder='Your location' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} />
                     </div>
                     <div className='flex flex-col flex-1'>
                         <h3 className='font-medium text-lg mb-4'>Drop Off Location</h3>
-                        <input placeholder='Drop off location' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                        <input required placeholder='Drop off location' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={dropOffLocation} onChange={(e) => setDropOffLocation(e.target.value)} />
                     </div>
                 </div>
                 <div className='flex flex-col md:flex-row gap-8 mt-6'>
@@ -92,14 +92,14 @@ const AddCarForm = () => {
                         <h3 className='font-medium text-lg mb-4'>Availability From</h3>
                         <div className="flex items-center rounded-md md:rounded-xl bg-[#F6F7F9]">
                             <AiOutlineCalendar className='text-2xl ml-4 text-[#90A3BF]' />
-                            <input placeholder='MM/YY/DD' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-2 py-4 placeholder:font-light w-full' />
+                            <input required placeholder='MM/YY/DD' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-2 py-4 placeholder:font-light w-full' value={availabilityFrom} onChange={(e) => setAvailabilityFrom(e.target.value)} />
                         </div>
                     </div>
                     <div className='flex flex-col flex-1'>
                         <h3 className='font-medium text-lg mb-4'>Availability To</h3>
                         <div className="flex items-center rounded-md md:rounded-xl bg-[#F6F7F9]">
                             <AiOutlineCalendar className='text-2xl ml-4 text-[#90A3BF]' />
-                            <input placeholder='MM/YY/DD' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-2 py-4 placeholder:font-light w-full' />
+                            <input required placeholder='MM/YY/DD' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-2 py-4 placeholder:font-light w-full' value={availabilityTo} onChange={(e) => setAvailabilityTo(e.target.value)} />
                         </div>
                     </div>
                 </div>

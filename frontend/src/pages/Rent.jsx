@@ -1,7 +1,18 @@
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Button, CarCard, Sidebar, TimeCard } from '../components'
-import { cars } from '../constants/carList'
+import { useFetchCarList } from '../utils/fetchCarList'
 
 const Rent = () => {
+    const { carList } = useSelector(state => state.carList)
+    const fetchCarList = useFetchCarList()
+
+    useEffect(() => {
+        if (!carList.length) {
+            fetchCarList()
+        }
+    }, [])
+
     return (
         <div className='flex bg-background h-full'>
             <div className='hidden md:flex'>
@@ -19,7 +30,7 @@ const Rent = () => {
                     <TimeCard text='Drop-Off' date='21 July 2022' time='01:00' />
                 </div>
                 <div className='flex flex-col md:flex-row md:flex-wrap gap-5 md:gap-8'>
-                    {cars.map((car, i) => (
+                    {carList.map((car, i) => (
                         <CarCard key={car.name + i} {...car} />
                     ))}
                 </div>
