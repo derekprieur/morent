@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const verify = require('../middleware/verify');
+const upload = require('../middleware/multer');
 
 let refreshTokens = [];
 
@@ -72,8 +73,9 @@ router.delete('/api/users/:id', verify, (req, res) => {
     }
 });
 
-router.post('/api/signup', async (req, res) => {
-    const { username, password } = req.body;
+router.post('/api/signup', upload.single('file'), async (req, res) => {
+    const { username, password, firstName, lastName, title } = req.body;
+    const avatar = req.file ? req.file.path : null;
 
     // Check if the username already exists in the database
     const existingUser = await User.findOne({ username });
@@ -85,14 +87,13 @@ router.post('/api/signup', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create and save the new user with the hashed password
-        const newUser = new User({ username, password: hashedPassword });
+        const newUser = new User({ username, password: hashedPassword, firstName, lastName, title, avatar });
         await newUser.save();
 
         // Generate access and refresh tokens
         const accessToken = jwt.sign(newUser.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
         const refreshToken = jwt.sign(newUser.toJSON(), process.env.REFRESH_TOKEN_SECRET);
         refreshTokens.push(refreshToken);
-
         res.json({ accessToken: accessToken, refreshToken: refreshToken, user: newUser });
     }
 });

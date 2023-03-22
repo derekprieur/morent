@@ -2,10 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Car = require('../models/car');
 const verify = require('../middleware/verify');
+const upload = require('../middleware/multer');
 
-router.post('/api/addcar', verify, async (req, res) => {
+router.post('/api/addcar', verify, upload.array('files'), async (req, res) => {
+    console.log('Adding car');
     const carData = req.body;
     console.log(carData);
+
+    const images = files.map((file) => file.path);
+
+    carData.images = images;
+
     try {
         const newCar = new Car(carData);
         await newCar.save();
