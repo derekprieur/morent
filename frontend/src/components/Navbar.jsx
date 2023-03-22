@@ -17,9 +17,6 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const notHomePage = location.pathname.includes('rent') || location.pathname.includes('profile') || location.pathname.includes('detail') || location.pathname.includes('login') || location.pathname.includes('add-car')
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false)
-    console.log(user, 'user')
-    console.log(currentPage, 'currentPage')
-    console.log(loginPageOpen, 'loginPageOpen')
 
     const mobileMenuClasses = mobileMenuVisible
         ? 'transform translate-x-0 transition duration-300 ease-in-out'

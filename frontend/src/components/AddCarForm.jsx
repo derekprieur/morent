@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 
 import { Button } from '../components'
+import { useSelector } from 'react-redux'
 
 const AddCarForm = () => {
     const [title, setTitle] = useState('');
@@ -15,6 +16,8 @@ const AddCarForm = () => {
     const [dropOffLocation, setDropOffLocation] = useState('');
     const [availabilityFrom, setAvailabilityFrom] = useState('');
     const [availabilityTo, setAvailabilityTo] = useState('');
+
+    const token = localStorage.getItem('accessToken');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,8 +36,11 @@ const AddCarForm = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:3000/api/addcar', carData);
-            console.log(response.data);
+            const response = await axios.post('http://localhost:3000/api/addcar', carData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
         } catch (error) {
             console.error('Error adding car:', error);
         }

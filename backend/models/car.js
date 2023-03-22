@@ -11,6 +11,7 @@ const carSchema = new mongoose.Schema({
     dropOffLocation: String,
     availabilityFrom: Date,
     availabilityTo: Date,
+    isFavorite: { type: Boolean, default: false },
 });
 
 const Car = mongoose.model('Car', carSchema);

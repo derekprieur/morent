@@ -3,28 +3,45 @@ const router = express.Router();
 const Car = require('../models/car');
 const verify = require('../middleware/verify');
 
-router.post('/api/addcar', async (req, res) => {
-    console.log('req.body: ', req.body);
+router.post('/api/addcar', verify, async (req, res) => {
     const carData = req.body;
+    console.log(carData);
     try {
         const newCar = new Car(carData);
         await newCar.save();
         res.status(201).json(newCar);
-        console.log('Car added');
     } catch (error) {
         res.status(400).json({ message: 'Error adding car', error });
-        console.log('Error adding car');
+        console.log('Error adding car', error);
     }
 });
 
 router.get('/api/cars', async (req, res) => {
     try {
         const cars = await Car.find();
-        console.log('cars: ', cars)
         res.status(200).json(cars);
     } catch (error) {
         res.status(400).json({ message: 'Error getting cars', error });
         console.log('Error getting cars');
+    }
+});
+
+router.patch('/api/cars/:id/toggleFavorite', async (req, res) => {
+    console.log('Toggling favorite');
+    console.log(req.params.id);
+    try {
+        const car = await Car.findById(req.params.id);
+        if (!car) {
+            return res.status(404).json({ message: 'Car not found' });
+        }
+
+        car.isFavorited = !car.isFavorited;
+        await car.save();
+
+        res.status(200).json(car);
+    } catch (error) {
+        res.status(400).json({ message: 'Error toggling favorite', error });
+        console.log('Error toggling favorite');
     }
 });
 

@@ -9,11 +9,10 @@ import { useFetchCarList } from '../utils/fetchCarList'
 const Hero = () => {
     const { carList } = useSelector(state => state.carList)
     const fetchCarList = useFetchCarList()
-    console.log(carList)
+    console.log(carList, 'carList')
 
     useEffect(() => {
         fetchCarList()
-        console.log(carList, 'carList')
     }, [])
 
     return (

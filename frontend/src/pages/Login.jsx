@@ -17,14 +17,17 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    console.log('Backend URL:', import.meta.env.VITE_APP_BACKEND_URL);
+
     const handleLogin = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:3000/api/login', { username, password })
+            const res = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/login`, { username, password })
+            console.log(res.data)
+            localStorage.setItem('accessToken', res.data.accessToken)
             dispatch(setUser(res.data.user))
             dispatch(setLoginPageOpen(false))
             navigate('/')
-            console.log(res.data.user)
         } catch (error) {
             setErrorMessage('Invalid username or password')
             console.log(error)
@@ -34,12 +37,10 @@ const Login = () => {
     const handleSignUp = async (e) => {
         e.preventDefault()
         try {
-            console.log(firstName, lastName, title, username, password, file)
             const res = await axios.post('http://localhost:3000/api/signup', { username, password, firstName, lastName, title, file });
             dispatch(setUser(res.data.user))
             dispatch(setLoginPageOpen(false))
             navigate('/')
-            console.log(res.data.user)
         } catch (error) {
             console.log(error)
         }
