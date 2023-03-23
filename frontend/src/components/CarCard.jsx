@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { RiGasStationFill } from 'react-icons/ri'
 import { GiSteeringWheel } from 'react-icons/gi'
@@ -54,7 +54,9 @@ const CarCard = ({ _id, type, gas, transmission, originalPrice, favorite, page, 
                     <p className='text-[#1A202C] font-bold text-xl md:text-2xl'>${rentPrice}.00/ <span className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>day</span></p>
                     <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>${originalPrice}.00</p>
                 </div>
-                <Button text='Rent Now' />
+                <Link to='/rent'>
+                    <Button text='Rent Now' />
+                </Link>
             </div>
         </div>
     )
@@ -89,7 +91,11 @@ const CarCard = ({ _id, type, gas, transmission, originalPrice, favorite, page, 
                     <p className='text-[#1A202C] font-bold text-xl md:text-2xl'>${rentPrice}.00/ <span className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>day</span></p>
                     <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>${originalPrice}.00</p>
                 </div>
-                {page != 'profile' && <Button text='Rent Now' />}
+                {page != 'profile' &&
+                    <Link to='/rent'>
+                        <Button text='Rent Now' />
+                    </Link>
+                }
             </div>
         </div>
     )

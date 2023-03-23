@@ -1,45 +1,88 @@
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Button, CarCard, Sidebar, TimeCard } from '../components'
-import { useFetchCarList } from '../utils/fetchCarList'
-import { useFilteredCarList } from '../utils/filterCarList'
+import React, { useState } from 'react'
+import { AiOutlineCalendar } from 'react-icons/ai'
+
+import { Button } from '../components'
 
 const Rent = () => {
-    const { carList } = useSelector(state => state.carList)
-    const activeFilters = useSelector(state => state.activeFilters)
-    const fetchCarList = useFetchCarList()
-    const filteredCarList = useFilteredCarList()
-    console.log(filteredCarList, 'filteredCarList')
+    const [pickupLocation, setPickupLocation] = useState('');
+    const [dropOffLocation, setDropOffLocation] = useState('');
+    const [pickupDate, setPickupDate] = useState('');
+    const [dropOffDate, setDropOffDate] = useState('');
+    const [pickupTime, setPickupTime] = useState('');
+    const [dropOffTime, setDropOffTime] = useState('');
 
-    useEffect(() => {
-        fetchCarList()
-    }, [])
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const rentData = {
+            pickupLocation,
+            dropOffLocation,
+            pickupDate,
+            dropOffDate,
+            pickupTime,
+            dropOffTime
+        };
+
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/rentcar`, rentData, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            });
+            console.log('Car rented successfully:', response);
+        } catch (error) {
+            console.error("Error renting car:", error);
+        }
+
+    };
 
     return (
-        <div className='flex bg-background h-full'>
-            <div className='hidden md:flex'>
-                <Sidebar />
-            </div>
-            <div className='py-8 px-6 md:px-8 flex-1 space-y-8 border-t'>
-                <div className='gap-8 md:gap-10 flex flex-col md:flex-row relative items-center'>
-                    <TimeCard text='Pick-Up' date='20 July 2022' time='07:00' />
-                    <div className='absolute md:hidden top-32 left-[180px]'>
-                        <Button text='arrows' />
+        <div className='bg-[#F6F7F9] pt-8 md:px-72 md:py-10 h-full'>
+            <div className='bg-white rounded-xl px-6 pt-10 md:p-6'>
+                <h3 className='font-bold text-2xl mb-1'>Rent Car</h3>
+                <p className='text-[#90A3BF]'>Please enter your info</p>
+                <form onSubmit={handleSubmit}>
+                    <div className='flex flex-col md:flex-row gap-8 mt-6'>
+                        <div className='flex flex-col flex-1'>
+                            <h3 className='font-medium text-lg mb-4'>Pickup Location</h3>
+                            <input required placeholder='Your location' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} />
+                        </div>
+                        <div className='flex flex-col flex-1'>
+                            <h3 className='font-medium text-lg mb-4'>Drop Off Location</h3>
+                            <input required placeholder='Drop off location' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={dropOffLocation} onChange={(e) => setDropOffLocation(e.target.value)} />
+                        </div>
                     </div>
-                    <div className='hidden md:flex h-[60px]'>
-                        <Button text='arrows' />
+                    <div className='flex flex-col md:flex-row gap-8 mt-6'>
+                        <div className='flex flex-col flex-1'>
+                            <h3 className='font-medium text-lg mb-4'>Pickup Date</h3>
+                            <div className="flex items-center rounded-md md:rounded-xl bg-[#F6F7F9]">
+                                <AiOutlineCalendar className='text-2xl ml-4 text-[#90A3BF]' />
+                                <input required type="date" placeholder='MM/YY/DD' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-2 py-4 placeholder:font-light w-full' value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} />
+                            </div>
+                        </div>
+                        <div className='flex flex-col flex-1'>
+                            <h3 className='font-medium text-lg mb-4'>Drop Off Date</h3>
+                            <div className="flex items-center rounded-md md:rounded-xl bg-[#F6F7F9]">
+                                <AiOutlineCalendar className='text-2xl ml-4 text-[#90A3BF]' />
+                                <input required type="date" placeholder='MM/YY/DD' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-2 py-4 placeholder:font-light w-full' value={dropOffDate} onChange={(e) => setDropOffDate(e.target.value)} />
+                            </div>
+                        </div>
                     </div>
-                    <TimeCard text='Drop-Off' date='21 July 2022' time='01:00' />
-                </div>
-                <div className='flex flex-col md:flex-row md:flex-wrap gap-5 md:gap-8'>
-                    {filteredCarList.map((car, i) => (
-                        <CarCard key={car.title + i} {...car} />
-                    ))}
-                </div>
-                <div className='flex justify-center pt-4 relative'>
-                    <Button text='Show More Cars' />
-                    <p className='absolute text-[#90A3BF] right-0 top-7 font-medium'>120 Cars</p>
-                </div>
+                    <div className='flex flex-col md:flex-row gap-8 mt-6'>
+                        <div className='flex flex-col flex-1'>
+                            <h3 className='font-medium text-lg mb-4'>Pickup Time</h3>
+                            <input required type="time" placeholder='HH:MM' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={pickupTime} onChange={(e) => setPickupTime(e.target.value)} />
+                        </div>
+                        <div className='flex flex-col flex-1'>
+                            <h3 className='font-medium text-lg mb-4'>Drop Off Time</h3>
+                            <input required type="time" placeholder='HH:MM' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={dropOffTime} onChange={(e) => setDropOffTime(e.target.value)} />
+                        </div>
+                    </div>
+                    <div className='mt-8 mb-10 md:mb-0'>
+                        <Button text='Rent Car' full rounded size='large' type='submit' />
+                    </div>
+                </form>
             </div>
         </div>
     )

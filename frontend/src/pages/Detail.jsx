@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { Button, CarCard, Sidebar } from '../components'
 import { detail1 } from '../assets'
@@ -72,7 +73,9 @@ const Detail = () => {
                                 </div>
                                 <span className='text-[#90A3BF] text-sm md:text-base line-through'>$100.00</span>
                             </div>
-                            <Button text='Rent Now' size='large' />
+                            <Link to='/rent'>
+                                <Button text='Rent Now' size='large' />
+                            </Link>
                         </div>
                     </div>
                 </div>

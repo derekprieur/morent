@@ -36,7 +36,7 @@ const Navbar = () => {
                             <Link to='/' onClick={() => dispatch(setCurrentPage('home'))}>
                                 <li className={`font-normal text-lg ${currentPage === 'home' ? 'text-[#3563E9]' : 'text-[#3D5278]'}`}>Home</li>
                             </Link>
-                            <Link to='/rent' onClick={() => dispatch(setCurrentPage('search cars'))}>
+                            <Link to='/search' onClick={() => dispatch(setCurrentPage('search cars'))}>
                                 <li className={`font-normal text-lg ${currentPage === 'search cars' ? 'text-[#3563E9]' : 'text-[#3D5278]'}`}>Search Cars</li>
                             </Link>
                             <Link to={user != null ? '/add-car' : '/login'} onClick={() => { user != null && dispatch(setCurrentPage('add car')) }}>
@@ -97,7 +97,7 @@ const Navbar = () => {
                             Home
                         </li>
                     </Link>
-                    <Link to='/rent' onClick={() => { dispatch(setCurrentPage('search cars')); setMobileMenuVisible(false); }}>
+                    <Link to='/search' onClick={() => { dispatch(setCurrentPage('search cars')); setMobileMenuVisible(false); }}>
                         <li className={`rounded flex items-center w-full p-3 font-normal text-lg bg-[#3563E9] ${currentPage === 'search cars' ? 'text-[white] bg-[#3563E9]' : 'text-[#3D5278] bg-[#f7f9fc]'}`}>
                             <SlMagnifier className='text-lg mr-2' />
                             Search Cars</li>

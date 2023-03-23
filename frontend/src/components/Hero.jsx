@@ -36,7 +36,7 @@ const Hero = () => {
                 </div>
                 <div className='flex justify-between mt-8 md:mt-11 mb-5'>
                     <p className=' text-[#90A3BF] font-normal md:text-lg md:ml-5'>Popular Cars</p>
-                    <Link to='/rent'>
+                    <Link to='/search'>
                         <button className=' text-[#3563E9] font-medium text-sm md:text-lg'>View All</button>
                     </Link>
                 </div>

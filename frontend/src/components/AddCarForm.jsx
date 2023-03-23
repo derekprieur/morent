@@ -181,7 +181,7 @@ const AddCarForm = () => {
                         Clear Files
                     </button>
                 )}
-                <div className='mt-10 flex w-full mb-10'>
+                <div className='mt-10 flex w-full mb-10 md:mb-0'>
                     <Button text='Register Car' size='large' rounded full />
                 </div>
             </form>
