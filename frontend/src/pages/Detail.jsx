@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { Button, CarCard, Sidebar } from '../components'
 import { detail1 } from '../assets'
@@ -9,6 +9,7 @@ import { useFetchCarList } from '../utils/fetchCarList'
 
 const Detail = () => {
     const { carList } = useSelector(state => state.carList)
+    const { id } = useParams()
     const fetchCarList = useFetchCarList()
 
     useEffect(() => {
@@ -73,7 +74,7 @@ const Detail = () => {
                                 </div>
                                 <span className='text-[#90A3BF] text-sm md:text-base line-through'>$100.00</span>
                             </div>
-                            <Link to='/rent'>
+                            <Link to={`/rent/${id}`}>
                                 <Button text='Rent Now' size='large' />
                             </Link>
                         </div>

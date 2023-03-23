@@ -1,15 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineCalendar } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import { Button } from '../components'
 
 const Rent = () => {
+    const user = useSelector(state => state.auth.user)
+    const carList = useSelector(state => state.carList.carList)
+    const navigate = useNavigate()
     const [pickupLocation, setPickupLocation] = useState('');
     const [dropOffLocation, setDropOffLocation] = useState('');
     const [pickupDate, setPickupDate] = useState('');
     const [dropOffDate, setDropOffDate] = useState('');
     const [pickupTime, setPickupTime] = useState('');
     const [dropOffTime, setDropOffTime] = useState('');
+    const token = localStorage.getItem('accessToken');
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/login')
+        }
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +37,7 @@ const Rent = () => {
         };
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/rentcar`, rentData, {
+            const response = await axios.patch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/rentcar`, rentData, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json",
@@ -72,11 +85,11 @@ const Rent = () => {
                     <div className='flex flex-col md:flex-row gap-8 mt-6'>
                         <div className='flex flex-col flex-1'>
                             <h3 className='font-medium text-lg mb-4'>Pickup Time</h3>
-                            <input required type="time" placeholder='HH:MM' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={pickupTime} onChange={(e) => setPickupTime(e.target.value)} />
+                            <input required type="time" placeholder='HH:MM' className='rounded-md md:rounded-xl bg-[#F6F7F9] pl-4 md:pl-8 pr-2 py-4 placeholder:font-light' value={pickupTime} onChange={(e) => setPickupTime(e.target.value)} />
                         </div>
                         <div className='flex flex-col flex-1'>
                             <h3 className='font-medium text-lg mb-4'>Drop Off Time</h3>
-                            <input required type="time" placeholder='HH:MM' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={dropOffTime} onChange={(e) => setDropOffTime(e.target.value)} />
+                            <input required type="time" placeholder='HH:MM' className='rounded-md md:rounded-xl bg-[#F6F7F9] pl-4 md:pl-8 pr-2 py-4 placeholder:font-light' value={dropOffTime} onChange={(e) => setDropOffTime(e.target.value)} />
                         </div>
                     </div>
                     <div className='mt-8 mb-10 md:mb-0'>

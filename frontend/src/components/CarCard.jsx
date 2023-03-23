@@ -27,7 +27,7 @@ const CarCard = ({ _id, type, gas, transmission, originalPrice, favorite, page, 
         <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-xs md:max-w-sm md:mx-0 md:flex md:flex-col md:justify-between' >
             <div className='flex items-start justify-between'>
                 <div className='flex flex-col gap-1'>
-                    <h2 className='font-medium text-[#1A202C] text-xl cursor-pointer' onClick={() => navigate(`/detail/${title}`)}>{title}</h2>
+                    <h2 className='font-medium text-[#1A202C] text-xl cursor-pointer' onClick={() => navigate(`/detail/${carId}`)}>{title}</h2>
                     <h3 className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>{type}</h3>
                 </div>
                 {isFavorited ? <AiFillHeart className='text-2xl text-[#ED3F3F] cursor-pointer' onClick={toggleFavorite} /> : <AiOutlineHeart className='text-2xl text-[#90A3BF] cursor-pointer' onClick={toggleFavorite} />}
@@ -54,7 +54,7 @@ const CarCard = ({ _id, type, gas, transmission, originalPrice, favorite, page, 
                     <p className='text-[#1A202C] font-bold text-xl md:text-2xl'>${rentPrice}.00/ <span className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>day</span></p>
                     <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>${originalPrice}.00</p>
                 </div>
-                <Link to='/rent'>
+                <Link to={`/rent/${_id}`}>
                     <Button text='Rent Now' />
                 </Link>
             </div>
@@ -64,7 +64,7 @@ const CarCard = ({ _id, type, gas, transmission, originalPrice, favorite, page, 
         <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-md md:max-w-sm mx-auto md:mx-0 md:flex md:flex-col md:justify-between'>
             <div className='flex items-start justify-between'>
                 <div className='flex flex-col gap-1'>
-                    <h2 className='font-medium text-[#1A202C] text-xl cursor-pointer' onClick={() => navigate(`/detail/${title}`)}>{title}</h2>
+                    <h2 className='font-medium text-[#1A202C] text-xl cursor-pointer' onClick={() => navigate(`/detail/${carId}`)}>{title}</h2>
                     <h3 className='text-[#90A3BF] font-light text-sm md:text-base md:font-normal'>{type}</h3>
                 </div>
                 {favorite ? <AiFillHeart className='text-2xl text-[#ED3F3F]' /> : <AiOutlineHeart className='text-2xl text-[#90A3BF]' />}
@@ -92,7 +92,7 @@ const CarCard = ({ _id, type, gas, transmission, originalPrice, favorite, page, 
                     <p className='text-[#90A3BF] font-light text-sm line-through md:text-base md:font-normal'>${originalPrice}.00</p>
                 </div>
                 {page != 'profile' &&
-                    <Link to='/rent'>
+                    <Link to={`/rent/${_id}`}>
                         <Button text='Rent Now' />
                     </Link>
                 }
