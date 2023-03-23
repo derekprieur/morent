@@ -9,7 +9,7 @@ router.post('/api/addcar', verify, upload.array('files'), async (req, res) => {
     const carData = req.body;
     console.log(carData);
 
-    const images = files.map((file) => file.path);
+    const images = req.files.map((file) => file.path);
 
     carData.images = images;
 

@@ -1,16 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Button, CarCard, Sidebar, TimeCard } from '../components'
 import { useFetchCarList } from '../utils/fetchCarList'
+import { useFilteredCarList } from '../utils/filterCarList'
 
 const Rent = () => {
     const { carList } = useSelector(state => state.carList)
+    const activeFilters = useSelector(state => state.activeFilters)
     const fetchCarList = useFetchCarList()
+    const filteredCarList = useFilteredCarList()
+    console.log(filteredCarList, 'filteredCarList')
 
     useEffect(() => {
-        if (!carList.length) {
-            fetchCarList()
-        }
+        fetchCarList()
     }, [])
 
     return (
@@ -30,7 +32,7 @@ const Rent = () => {
                     <TimeCard text='Drop-Off' date='21 July 2022' time='01:00' />
                 </div>
                 <div className='flex flex-col md:flex-row md:flex-wrap gap-5 md:gap-8'>
-                    {carList.map((car, i) => (
+                    {filteredCarList.map((car, i) => (
                         <CarCard key={car.title + i} {...car} />
                     ))}
                 </div>

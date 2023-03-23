@@ -13,6 +13,7 @@ const carSchema = new mongoose.Schema({
     availabilityTo: Date,
     images: [String],
     isFavorite: { type: Boolean, default: false },
+    owner: String,
 });
 
 const Car = mongoose.model('Car', carSchema);

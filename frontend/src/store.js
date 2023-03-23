@@ -1,8 +1,6 @@
 // redux toolkit setup
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './redux/authSlice';
-import currentPageReducer from './redux/currentPageSlice';
-import carListReducer from './redux/carListSlice';
+import { authReducer, activeFilterReducer, carListReducer, currentPageReducer } from './redux';
 
 // create store
 const store = configureStore({
@@ -10,6 +8,7 @@ const store = configureStore({
         auth: authReducer,
         currentPage: currentPageReducer,
         carList: carListReducer,
+        activeFilters: activeFilterReducer,
     },
 });
 

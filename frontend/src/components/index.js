@@ -9,12 +9,10 @@ import Sidebar from './Sidebar';
 import Filter from './Filter';
 import Footer from './Footer';
 import AddCarForm from './AddCarForm';
-import Login from './Login';
 import LogoutButton from './LogoutButton';
 
 export {
     LogoutButton,
-    Login,
     AddCarForm,
     Footer,
     Filter,

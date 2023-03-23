@@ -35,16 +35,29 @@ const Login = () => {
     }
 
     const handleSignUp = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:3000/api/signup', { username, password, firstName, lastName, title, file });
-            dispatch(setUser(res.data.user))
-            dispatch(setLoginPageOpen(false))
-            navigate('/')
+            const formData = new FormData();
+            formData.append("username", username);
+            formData.append("password", password);
+            formData.append("firstName", firstName);
+            formData.append("lastName", lastName);
+            formData.append("title", title);
+            formData.append("file", file);
+
+            const res = await axios.post(`http://localhost:3000/api/signup`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            dispatch(setUser(res.data.user));
+            dispatch(setLoginPageOpen(false));
+            navigate('/');
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
+
 
     const handleSignUpClick = () => {
         setShowSignUp(!showSignUp)
@@ -90,11 +103,11 @@ const Login = () => {
                         {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
                         <div className='flex flex-col'>
                             <h3 className='font-medium text-lg mb-4'>Username</h3>
-                            <input type="text" placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)} required className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                            <input type="text" placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} required className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
                         </div>
                         <div className='flex flex-col'>
                             <h3 className='font-medium text-lg mb-4'>Password</h3>
-                            <input type="password" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} required className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
+                            <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' />
                         </div>
                         <Button text='Login' size='large' rounded full type='submit' />
                     </form>

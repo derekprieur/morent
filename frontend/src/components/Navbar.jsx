@@ -49,8 +49,7 @@ const Navbar = () => {
                             dispatch(setCurrentPage('profile'))
                         }}>
                             {user != null && <>
-                                <img src={avatar} alt="avatar" className='object-contain flex md:hidden' />
-                                <img src={avatarLarge} alt="avatar" className='object-contain hidden md:flex' />
+                                <img src={user.avatar} alt="avatar" className='object-contain flex h-7 w-7 md:w-11 md:h-11 rounded-full' />
                             </>
                             }
                         </Link>
@@ -115,7 +114,7 @@ const Navbar = () => {
                     </Link>}
                 {user != null && <div className='flex flex-col gap-4 mt-8'>
                     <Link to='/profile' onClick={() => { setMobileMenuVisible(false); dispatch(setCurrentPage('profile')); }}>
-                        <Button text='My Profile' profileImage={avatar} />
+                        <Button text='My Profile' profileImage={user.avatar} />
                     </Link>
                     <Link to='/' onClick={() => { dispatch(setUser(null)); setMobileMenuVisible(false) }}>
                         <Button text='Logout' />

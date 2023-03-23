@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
 import { Button, CarCard, HeroCard, TimeCard } from '../components'
-import { popularCars, cars } from '../constants/carList'
 import { useFetchCarList } from '../utils/fetchCarList'
 
 const Hero = () => {
@@ -41,8 +40,8 @@ const Hero = () => {
                         <button className=' text-[#3563E9] font-medium text-sm md:text-lg'>View All</button>
                     </Link>
                 </div>
-                <div className='flex gap-5 md:gap-8 overflow-x-scroll hide-scroll'>
-                    {carList.map((car, index) => (
+                <div className='flex gap-5 md:gap-8 overflow-x-scroll hide-scroll md:flex-wrap'>
+                    {carList.slice(0, 4).map((car, index) => (
                         <CarCard key={index} {...car} page='home' />
                     ))}
                 </div>
