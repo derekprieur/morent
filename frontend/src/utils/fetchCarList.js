@@ -13,7 +13,6 @@ const getCars = async () => {
 
 export const useFetchCarList = () => {
     const dispatch = useDispatch();
-    const carList = useSelector((state) => state.carList);
 
     const fetchCarList = async () => {
         const carListFromDatabase = await getCars();

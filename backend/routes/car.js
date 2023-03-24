@@ -102,4 +102,47 @@ router.patch('/api/rentcar', verify, async (req, res) => {
     }
 });
 
+const getStartAndEndOfDay = (date) => {
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    return { startOfDay, endOfDay };
+}
+
+
+router.get('/api/availablecars', async (req, res) => {
+    try {
+        const cars = await Car.find();
+        const availableCars = [];
+        const currentDate = new Date();
+        const { startOfDay, endOfDay } = getStartAndEndOfDay(currentDate);
+
+        for (const car of cars) {
+            const existingRentals = await Rental.find({
+                car: car._id,
+                $or: [
+                    {
+                        pickupDate: { $lte: endOfDay },
+                        dropOffDate: { $gte: startOfDay },
+                    },
+                ],
+            });
+
+            if (existingRentals.length === 0) {
+                availableCars.push(car);
+            }
+        }
+
+        res.status(200).json(availableCars);
+    } catch (error) {
+        res.status(400).json({ message: 'Error getting available cars', error });
+        console.log('Error getting available cars');
+    }
+});
+
+
+
 module.exports = router;

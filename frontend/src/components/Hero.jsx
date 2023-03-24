@@ -4,14 +4,19 @@ import { useEffect } from 'react'
 
 import { Button, CarCard, HeroCard, TimeCard } from '../components'
 import { useFetchCarList } from '../utils/fetchCarList'
+import { useFetchAvailableCars } from '../utils/fetchAvailableCars'
 
 const Hero = () => {
     const { carList } = useSelector(state => state.carList)
+    const { availableCars } = useSelector(state => state.availableCars)
     const fetchCarList = useFetchCarList()
+    const fetchAvailableCars = useFetchAvailableCars()
     console.log(carList, 'carList')
+    console.log(availableCars, 'availableCars')
 
     useEffect(() => {
         fetchCarList()
+        fetchAvailableCars()
     }, [])
 
     return (

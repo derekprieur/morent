@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 import { Button } from '../components'
 
 const Rent = () => {
     const user = useSelector(state => state.auth.user)
-    const carList = useSelector(state => state.carList.carList)
+    const { id } = useParams()
     const navigate = useNavigate()
     const [pickupLocation, setPickupLocation] = useState('');
     const [dropOffLocation, setDropOffLocation] = useState('');
@@ -28,6 +28,7 @@ const Rent = () => {
         e.preventDefault();
 
         const rentData = {
+            carId: id,
             pickupLocation,
             dropOffLocation,
             pickupDate,
