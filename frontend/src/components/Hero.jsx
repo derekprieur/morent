@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button, CarCard, HeroCard, TimeCard } from '../components'
 import { useFetchCarList } from '../utils/fetchCarList'
 import { useFetchAvailableCars } from '../utils/fetchAvailableCars'
+import { useSwapPickupDropoff } from '../utils/swapPickupDropoff'
 
 const Hero = () => {
     const { carList } = useSelector(state => state.carList)
     const { availableCars } = useSelector(state => state.availableCars)
+    const { timeInputs } = useSelector(state => state.timeInputs)
+    const swapPickupDropoff = useSwapPickupDropoff()
+    console.log(timeInputs)
     const fetchCarList = useFetchCarList()
     const fetchAvailableCars = useFetchAvailableCars()
-    console.log(carList, 'carList')
-    console.log(availableCars, 'availableCars')
 
     useEffect(() => {
         fetchCarList()
@@ -30,14 +32,14 @@ const Hero = () => {
             </div>
             <div className='px-6 md:px-0'>
                 <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex flex-col md:flex-row relative items-center md:justify-center'>
-                    <TimeCard text='Pick-Up' date='20 July 2022' time='07:00' />
-                    <div className='absolute md:hidden top-32 flex justify-center'>
+                    <TimeCard text='Pick-Up' />
+                    <div className='absolute md:hidden top-32 flex justify-center' onClick={swapPickupDropoff}>
                         <Button text='arrows' />
                     </div>
-                    <div className='hidden md:flex h-[60px]'>
+                    <div className='hidden md:flex h-[60px]' onClick={swapPickupDropoff}>
                         <Button text='arrows' />
                     </div>
-                    <TimeCard text='Drop-Off' date='21 July 2022' time='01:00' />
+                    <TimeCard text='Drop-Off' />
                 </div>
                 <div className='flex justify-between mt-8 md:mt-11 mb-5'>
                     <p className=' text-[#90A3BF] font-normal md:text-lg md:ml-5'>Popular Cars</p>
@@ -63,7 +65,7 @@ const Hero = () => {
                 </div>
                 <div className='flex justify-center p-12 relative'>
                     <Button text='Show More Cars' />
-                    <p className='absolute text-[#90A3BF] right-0 top-14 font-medium'>120 Cars</p>
+                    <p className='absolute text-[#90A3BF] right-0 top-14 font-medium'>{availableCars.length} Cars</p>
                 </div>
             </div>
         </div>

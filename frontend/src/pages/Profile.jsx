@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux"
 
-import { carBanner, profilePic } from "../assets"
+import { carBanner } from "../assets"
 import { Button, CarCard } from "../components"
+import useScrollToTop from '../utils/scrollToTop.js'
 
 const Profile = () => {
     const user = useSelector(state => state.auth.user)
     const cars = useSelector(state => state.carList.carList)
     const { firstName, lastName, title, avatar } = user
-    console.log(user)
+
+    useScrollToTop()
+
     return (
         <div className='bg-[#F6F7F9] h-full p-6 md:p-[70px] rounded-xl'>
             <h3 className="font-bold text-xl">My Profile</h3>

@@ -54,7 +54,8 @@ const initialState = {
             count: 0,
             checked: true,
         }
-    ]
+    ],
+    searchFilter: '',
 };
 
 const activeFiltersSlice = createSlice({
@@ -67,10 +68,13 @@ const activeFiltersSlice = createSlice({
             console.log(category, name);
             const filter = state[category].find(filter => filter.name === name);
             filter.checked = !filter.checked;
+        },
+        updateSearch: (state, action) => {
+            state.searchFilter = action.payload;
         }
-    },
+    }
 });
 
-export const { updateFilter } = activeFiltersSlice.actions;
+export const { updateFilter, updateSearch } = activeFiltersSlice.actions;
 
 export default activeFiltersSlice.reducer;

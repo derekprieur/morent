@@ -1,6 +1,6 @@
 // redux toolkit setup
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer, activeFilterReducer, carListReducer, currentPageReducer, availableCarsReducer } from './redux';
+import { authReducer, activeFilterReducer, carListReducer, currentPageReducer, availableCarsReducer, timeInputsReducer } from './redux';
 
 // create store
 const store = configureStore({
@@ -10,6 +10,7 @@ const store = configureStore({
         carList: carListReducer,
         activeFilters: activeFilterReducer,
         availableCars: availableCarsReducer,
+        timeInputs: timeInputsReducer
     },
 });
 

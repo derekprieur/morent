@@ -3,3 +3,4 @@ export { default as currentPageReducer } from '../redux/currentPageSlice';
 export { default as carListReducer } from '../redux/carListSlice';
 export { default as activeFilterReducer } from '../redux/activeFiltersSlice';
 export { default as availableCarsReducer } from '../redux/availableCarsSlice';
+export { default as timeInputsReducer } from '../redux/timeInputsSlice';

@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+
 import { setUser, setLoginPageOpen } from '../redux/authSlice'
 import { useDispatch } from 'react-redux'
 import { Button } from '../components'
+import useScrollToTop from '../utils/scrollToTop'
 
 const Login = () => {
+    useScrollToTop()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [firstName, setFirstName] = useState('');

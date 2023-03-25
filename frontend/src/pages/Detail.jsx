@@ -6,11 +6,14 @@ import { Link, useParams } from 'react-router-dom'
 import { Button, CarCard, Sidebar } from '../components'
 import { detail1 } from '../assets'
 import { useFetchCarList } from '../utils/fetchCarList'
+import useScrollToTop from '../utils/scrollToTop.js'
 
 const Detail = () => {
     const { carList } = useSelector(state => state.carList)
     const { id } = useParams()
     const fetchCarList = useFetchCarList()
+
+    useScrollToTop()
 
     useEffect(() => {
         if (!carList.length) {

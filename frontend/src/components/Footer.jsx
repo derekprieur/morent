@@ -1,6 +1,7 @@
 import { morent, morentLarge } from '../assets'
 
 const Footer = () => {
+    const year = new Date().getFullYear();
     return (
         <div className='bg-[#F6F7F9] md:bg-white px-6 md:px-[60px] pt-3 md:pt-[60px]'>
             <div className='flex flex-col md:flex-row justify-between'>
@@ -44,7 +45,7 @@ const Footer = () => {
                     <p>Privacy & Policy</p>
                     <p>Terms & Conditions</p>
                 </div>
-                <p className='font-bold text-sm md:text-lg mt-8 pb-6 md:pb-[60px]'>©2022 MORENT. All rights reserved</p>
+                <p className='font-bold text-sm md:text-lg mt-8 pb-6 md:pb-[60px]'>©{year} MORENT. All rights reserved</p>
             </div>
         </div>
     )
