@@ -22,6 +22,11 @@ const Navbar = () => {
         ? 'transform translate-x-0 transition duration-300 ease-in-out'
         : 'transform -translate-x-full transition duration-300 ease-in-out'
 
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        dispatch(setUser(null))
+        dispatch(setCurrentPage('home'))
+    }
 
     return (
         <>
@@ -58,7 +63,7 @@ const Navbar = () => {
                         </div>
                         {user != null &&
                             <Link to='/'>
-                                <div className='hidden md:flex' onClick={() => { dispatch(setUser(null)); dispatch(setCurrentPage('home')) }}>
+                                <div className='hidden md:flex' onClick={handleLogout}>
                                     <LogoutButton />
                                 </div>
                             </Link>
@@ -97,7 +102,7 @@ const Navbar = () => {
                             Home
                         </li>
                     </Link>
-                    <Link to='/search' onClick={() => { dispatch(setCurrentPage('search cars')); setMobileMenuVisible(false); }}>
+                    <Link to='/search' onClick={() => { handleLogout(); setMobileMenuVisible(false); }}>
                         <li className={`rounded flex items-center w-full p-3 font-normal text-lg bg-[#3563E9] ${currentPage === 'search cars' ? 'text-[white] bg-[#3563E9]' : 'text-[#3D5278] bg-[#f7f9fc]'}`}>
                             <SlMagnifier className='text-lg mr-2' />
                             Search Cars</li>

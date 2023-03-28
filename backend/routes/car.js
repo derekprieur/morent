@@ -164,4 +164,31 @@ router.get('/api/searchcars', async (req, res) => {
     }
 });
 
+router.get('/api/cars/:id/isFavorited', verify, async (req, res, next) => {
+    const userId = req.user._id;
+    const carId = req.params.id;
+    try {
+        const car = await Car.findById(carId);
+        if (!car) {
+            return res.status(404).json({ message: 'Car not found' });
+        }
+        const isFavorited = car.favorites.includes(userId);
+        res.status(200).json({ isFavorited });
+    } catch (error) {
+        res.status(400).json({ message: 'Error checking favorite status', error });
+        console.log('Error checking favorite status', error);
+    }
+});
+
+router.get('/api/popularcars', async (req, res) => {
+    try {
+        const cars = await Car.find().sort({ favorites: 'desc' });
+        res.status(200).json(cars);
+    } catch (error) {
+        res.status(400).json({ message: 'Error getting popular cars', error });
+        console.log('Error getting popular cars', error);
+    }
+});
+
+
 module.exports = router;

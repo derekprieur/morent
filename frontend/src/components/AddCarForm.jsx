@@ -24,6 +24,10 @@ const AddCarForm = () => {
     const [dropOffLocation, setDropOffLocation] = useState('');
     const [availabilityFrom, setAvailabilityFrom] = useState('');
     const [availabilityTo, setAvailabilityTo] = useState('');
+    const [gasMileage, setGasMileage] = useState('');
+    const [transmission, setTransmission] = useState('');
+
+
     const token = localStorage.getItem('accessToken');
 
     useEffect(() => {
@@ -60,6 +64,8 @@ const AddCarForm = () => {
         carData.append("dropOffLocation", dropOffLocation);
         carData.append("availabilityFrom", availabilityFrom);
         carData.append("availabilityTo", availabilityTo);
+        carData.append("gasMileage", gasMileage);
+        carData.append("transmission", transmission);
         carData.append("owner", user._id);
 
         if (selectedFiles.length > 0) {
@@ -140,6 +146,20 @@ const AddCarForm = () => {
                         <div className='flex flex-col flex-1'>
                             <h3 className='font-medium text-lg mb-4'>Location</h3>
                             <input required placeholder='Your title' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={location} onChange={(e) => setLocation(e.target.value)} />
+                        </div>
+                    </div>
+                    <div className='flex flex-col md:flex-row gap-8 mt-6'>
+                        <div className='flex flex-col flex-1'>
+                            <h3 className='font-medium text-lg mb-4'>Gas Mileage</h3>
+                            <input required placeholder='Your gas mileage' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={gasMileage} onChange={(e) => setGasMileage(e.target.value)} />
+                        </div>
+                        <div className='flex flex-col flex-1'>
+                            <h3 className='font-medium text-lg mb-4'>Transmission</h3>
+                            <select required className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={transmission} onChange={(e) => setTransmission(e.target.value)}>
+                                <option value=''>Select a transmission</option>
+                                <option value='Automatic'>Automatic</option>
+                                <option value='Manual'>Manual</option>
+                            </select>
                         </div>
                     </div>
                     <h4 className='mt-8 text-[#3563E9] text-xl font-extrabold mb-6'>PICKUP INFO</h4>

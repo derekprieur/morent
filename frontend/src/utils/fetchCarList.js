@@ -16,6 +16,7 @@ export const useFetchCarList = () => {
 
     const fetchCarList = async () => {
         const carListFromDatabase = await getCars();
+        console.log(carListFromDatabase);
         dispatch(setCars(carListFromDatabase));
     };
 

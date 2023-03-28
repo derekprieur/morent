@@ -14,6 +14,8 @@ const carSchema = new mongoose.Schema({
     images: [String],
     favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     owner: String,
+    gasMileage: Number,
+    transmission: String,
 });
 
 const Car = mongoose.model('Car', carSchema);

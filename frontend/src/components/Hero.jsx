@@ -6,20 +6,25 @@ import { Button, CarCard, HeroCard, TimeCard } from '../components'
 import { useFetchCarList } from '../utils/fetchCarList'
 import { useFetchAvailableCars } from '../utils/fetchAvailableCars'
 import { useSwapPickupDropoff } from '../utils/swapPickupDropoff'
+import { useFetchPopularCars } from '../utils/fetchPopularCars'
 
 const Hero = () => {
     const { carList } = useSelector(state => state.carList)
+    const { popularCars } = useSelector(state => state.carList)
     const { availableCars } = useSelector(state => state.availableCars)
     const { timeInputs } = useSelector(state => state.timeInputs)
     const swapPickupDropoff = useSwapPickupDropoff()
-    console.log(timeInputs)
     const fetchCarList = useFetchCarList()
     const fetchAvailableCars = useFetchAvailableCars()
-    console.log(availableCars, 'availableCars')
+    const fetchPopularCars = useFetchPopularCars()
 
     useEffect(() => {
         fetchCarList()
         fetchAvailableCars()
+        fetchPopularCars()
+        console.log('availableCars', availableCars)
+        console.log('popularCars', popularCars)
+        console.log('test')
     }, [])
 
     return (
@@ -65,7 +70,9 @@ const Hero = () => {
                     ))}
                 </div>
                 <div className='flex justify-center p-12 relative'>
-                    <Button text='Show More Cars' />
+                    <div className={`${availableCars.length > 4 ? 'flex' : 'hidden'}`}>
+                        <Button text='Show More Cars' />
+                    </div>
                     <p className='absolute text-[#90A3BF] right-0 top-14 font-medium'>{availableCars.length} Cars</p>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import { Button, CarCard, Sidebar, TimeCard } from '../components'
 import { useFetchCarList } from '../utils/fetchCarList'
@@ -10,6 +11,7 @@ const Search = () => {
     const fetchCarList = useFetchCarList()
     const filteredCarList = useFilteredCarList()
     const swapPickupDropoff = useSwapPickupDropoff()
+    const availableCars = useSelector(state => state.availableCars.availableCars)
 
     useScrollToTop()
 
@@ -40,7 +42,7 @@ const Search = () => {
                 </div>
                 <div className='flex justify-center pt-4 relative'>
                     <Button text='Show More Cars' />
-                    <p className='absolute text-[#90A3BF] right-0 top-7 font-medium'>120 Cars</p>
+                    <p className='absolute text-[#90A3BF] right-0 top-7 font-medium'>{availableCars.length} Cars</p>
                 </div>
             </div>
         </div>
