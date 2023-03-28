@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Navbar } from "./components"
 import Footer from "./components/Footer"
@@ -6,6 +7,7 @@ import { Home, Profile, Search, AddCar, Login, Detail, Rent } from "./pages"
 const App = () => {
   return (
     <BrowserRouter>
+      <Toaster />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

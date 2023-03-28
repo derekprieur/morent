@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    timeInputs: { pickupLocation: '', pickupDate: '', pickupTime: '', dropoffLocation: '', dropoffDate: '', dropoffTime: '' }
+    timeInputs: { pickupLocation: '', pickupDate: '', pickupTime: '', dropOffLocation: '', dropOffDate: '', dropOffTime: '' }
 };
 
 const timeInputsSlice = createSlice({

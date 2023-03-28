@@ -1,15 +1,45 @@
-import { useSelector, useDispatch } from "react-redux"
+import axios from "axios"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { toast } from "react-hot-toast"
 
 import { magnify } from "../assets"
 import { updateSearch } from "../redux/activeFiltersSlice"
+import { setCars } from "../redux/carListSlice"
 
 const Input = ({ placeholder, rounded }) => {
-    const searchFilter = useSelector(state => state.activeFilters.searchFilter)
     const dispatch = useDispatch()
+    const [searchTimeout, setSearchTimeout] = useState(null);
+
+    const displayToast = (success, message) => {
+        if (success) {
+            toast.success(message);
+        } else {
+            toast.error(message);
+        }
+    }
+
+    const fetchCars = async (searchQuery) => {
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/searchcars`, {
+                params: { q: searchQuery }
+            });
+            dispatch(setCars(response.data));
+            displayToast(true, 'Search completed');
+        } catch (error) {
+            console.error('Error fetching cars', error);
+            displayToast(false, 'Error searching for cars');
+        }
+    }
 
     const handleChange = (e) => {
         dispatch(updateSearch(e.target.value))
-        console.log(searchFilter, 'searchFilter')
+        if (searchTimeout) {
+            clearTimeout(searchTimeout);
+        }
+        setSearchTimeout(setTimeout(() => {
+            fetchCars(e.target.value);
+        }, 500));
     }
 
     return (

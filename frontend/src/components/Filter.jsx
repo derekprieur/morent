@@ -4,13 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateFilter } from '../redux/activeFiltersSlice'
 
 const Filter = ({ name, checked, category }) => {
-    console.log(category, 'category')
     const carList = useSelector(state => state.carList.carList)
     const count = carList.filter(car => {
         if (category === 'typeFilters') {
             return car.type === name;
         } else if (category === 'capacityFilters') {
-            console.log(car.capacity.toString(), name.split(' ')[0].trim())
             return car.capacity.toString() === name.split(' ')[0].trim();
         }
         return false;

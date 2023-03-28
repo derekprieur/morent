@@ -12,7 +12,7 @@ const Rent = () => {
     const user = useSelector(state => state.auth.user)
     const dispatch = useDispatch()
     const { timeInputs } = useSelector(state => state.timeInputs)
-    const { pickupLocation, dropoffLocation, pickupDate, dropoffDate, pickupTime, dropoffTime } = timeInputs
+    const { pickupLocation, dropOffLocation, pickupDate, dropOffDate, pickupTime, dropOffTime } = timeInputs
     const { id } = useParams()
     const navigate = useNavigate()
     const token = localStorage.getItem('accessToken');
@@ -31,11 +31,11 @@ const Rent = () => {
         const rentData = {
             carId: id,
             pickupLocation: timeInputs.pickupLocation,
-            dropoffLocation: timeInputs.dropoffLocation,
+            dropOffLocation: timeInputs.dropOffLocation,
             pickupDate: timeInputs.pickupDate,
-            dropoffDate: timeInputs.dropoffDate,
+            dropOffDate: timeInputs.dropOffDate,
             pickupTime: timeInputs.pickupTime,
-            dropoffTime: timeInputs.dropoffTime
+            dropOffTime: timeInputs.dropOffTime
         };
 
         try {
@@ -45,7 +45,6 @@ const Rent = () => {
                     "Content-Type": "application/json",
                 },
             });
-            console.log('Car rented successfully:', response);
         } catch (error) {
             console.error("Error renting car:", error);
         }
@@ -69,7 +68,7 @@ const Rent = () => {
                         </div>
                         <div className='flex flex-col flex-1'>
                             <h3 className='font-medium text-lg mb-4'>Drop Off Location</h3>
-                            <input required placeholder='Drop off location' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={dropoffLocation} onChange={(e) => handleInputChange(e, 'dropoffLocation')} />
+                            <input required placeholder='Drop off location' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-4 md:px-8 py-4 placeholder:font-light' value={dropOffLocation} onChange={(e) => handleInputChange(e, 'dropOffLocation')} />
                         </div>
                     </div>
                     <div className='flex flex-col md:flex-row gap-8 mt-6'>
@@ -84,7 +83,7 @@ const Rent = () => {
                             <h3 className='font-medium text-lg mb-4'>Drop Off Date</h3>
                             <div className="flex items-center rounded-md md:rounded-xl bg-[#F6F7F9]">
                                 <AiOutlineCalendar className='text-2xl ml-4 text-[#90A3BF]' />
-                                <input required type="date" placeholder='MM/YY/DD' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-2 py-4 placeholder:font-light w-full' value={dropoffDate} onChange={(e) => handleInputChange(e, 'dropoffDate')} />
+                                <input required type="date" placeholder='MM/YY/DD' className='rounded-md md:rounded-xl bg-[#F6F7F9] px-2 py-4 placeholder:font-light w-full' value={dropOffDate} onChange={(e) => handleInputChange(e, 'dropOffDate')} />
                             </div>
                         </div>
                     </div>
@@ -95,7 +94,7 @@ const Rent = () => {
                         </div>
                         <div className='flex flex-col flex-1'>
                             <h3 className='font-medium text-lg mb-4'>Drop Off Time</h3>
-                            <input required type="time" placeholder='HH:MM' className='rounded-md md:rounded-xl bg-[#F6F7F9] pl-4 md:pl-8 pr-2 py-4 placeholder:font-light' value={dropoffTime} onChange={(e) => handleInputChange(e, 'dropoffTime')} />
+                            <input required type="time" placeholder='HH:MM' className='rounded-md md:rounded-xl bg-[#F6F7F9] pl-4 md:pl-8 pr-2 py-4 placeholder:font-light' value={dropOffTime} onChange={(e) => handleInputChange(e, 'dropOffTime')} />
                         </div>
                     </div>
                     <div className='mt-8 mb-10 md:mb-0'>

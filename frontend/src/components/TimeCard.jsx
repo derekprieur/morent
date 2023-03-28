@@ -13,7 +13,6 @@ const TimeCard = ({ text }) => {
 
     useEffect(() => {
         if (text === 'Pick-Up') {
-            console.log(timeInputs)
             setLocationValue(timeInputs.pickupLocation)
             setDateValue(timeInputs.pickupDate)
             setTimeValue(timeInputs.pickupTime)

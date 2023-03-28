@@ -5,7 +5,6 @@ import { Filter, Input } from '../components'
 const Sidebar = () => {
   const activeFilters = useSelector(state => state.activeFilters)
   const { typeFilters, capacityFilters } = activeFilters
-  console.log(activeFilters)
   return (
     <div className='bg-white h-full w-[360px] border-t px-8 py-10'>
       <h4 className='text-[#94A7CB] text-sm font-medium mb-7'>SEARCH</h4>

@@ -36,19 +36,26 @@ router.get('/api/cars', async (req, res) => {
     }
 });
 
-router.patch('/api/cars/:id/toggleFavorite', async (req, res) => {
+router.patch('/api/cars/:id/toggleFavorite', verify, async (req, res) => {
     console.log('Toggling favorite');
     console.log(req.params.id);
+    const userId = req.user._id;
     try {
         const car = await Car.findById(req.params.id);
         if (!car) {
             return res.status(404).json({ message: 'Car not found' });
         }
 
-        car.isFavorited = !car.isFavorited;
+        const userIndex = car.favorites.indexOf(userId);
+        if (userIndex === -1) {
+            car.favorites.push(userId);
+        } else {
+            car.favorites.splice(userIndex, 1);
+        }
+
         await car.save();
 
-        res.status(200).json(car);
+        res.status(200).json({ isFavorited: userIndex === -1, car });
     } catch (error) {
         res.status(400).json({ message: 'Error toggling favorite', error });
         console.log('Error toggling favorite');
@@ -143,6 +150,18 @@ router.get('/api/availablecars', async (req, res) => {
     }
 });
 
+router.get('/api/searchcars', async (req, res) => {
+    const searchQuery = req.query.q;
 
+    try {
+        const cars = await Car.find({
+            title: { $regex: new RegExp(searchQuery, 'i') }
+        });
+        res.status(200).json(cars);
+    } catch (error) {
+        res.status(400).json({ message: 'Error searching for cars', error });
+        console.log('Error searching for cars');
+    }
+});
 
 module.exports = router;

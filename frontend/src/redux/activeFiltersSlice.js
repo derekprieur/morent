@@ -63,9 +63,7 @@ const activeFiltersSlice = createSlice({
     initialState,
     reducers: {
         updateFilter: (state, action) => {
-            console.log(action.payload);
             const { category, name } = action.payload;
-            console.log(category, name);
             const filter = state[category].find(filter => filter.name === name);
             filter.checked = !filter.checked;
         },

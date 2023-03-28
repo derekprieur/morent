@@ -1,21 +1,21 @@
 import { AiOutlineClose, AiFillHome, AiFillPlusSquare } from 'react-icons/ai'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { SlMagnifier } from 'react-icons/sl'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 
 import { Button, Input, LogoutButton } from '../components'
-import { morent, morentLarge, avatar, avatarLarge } from '../assets'
+import { morent, morentLarge } from '../assets'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { setLoginPageOpen, setUser } from '../redux/authSlice'
 import { setCurrentPage } from '../redux/currentPageSlice'
-import { useState } from 'react'
 
 const Navbar = () => {
     const user = useSelector(state => state.auth.user)
     const currentPage = useSelector(state => state.currentPage.currentPage)
     const loginPageOpen = useSelector(state => state.auth.loginPageOpen)
     const dispatch = useDispatch()
-    const notHomePage = location.pathname.includes('rent') || location.pathname.includes('profile') || location.pathname.includes('detail') || location.pathname.includes('login') || location.pathname.includes('add-car')
+    const notHomePage = location.pathname.includes('search') || location.pathname.includes('profile') || location.pathname.includes('detail') || location.pathname.includes('login') || location.pathname.includes('add-car')
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false)
 
     const mobileMenuClasses = mobileMenuVisible
@@ -71,7 +71,7 @@ const Navbar = () => {
                         }
                     </div>
                 </div>
-                <div className="flex justify-between md:hidden gap-4">
+                <div className={`justify-between md:hidden gap-4 ${currentPage === 'search cars' || location.pathname.includes('search') ? 'flex' : 'hidden'}`}>
                     <Input placeholder='Search something here' />
                     <div className="w-12 h-12 border border-[#C3D4E966] flex items-center rounded-[10px] px-3 flex-col justify-between py-4">
                         <div className="border-b-2 border-[#3D5278] w-full relative">

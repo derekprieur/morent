@@ -12,7 +12,6 @@ export const useSwapPickupDropoff = () => {
         dispatch(updateField({ key: "dropoffLocation", value: pickupLocation }));
         dispatch(updateField({ key: "pickupDate", value: dropoffDate }));
         dispatch(updateField({ key: "dropoffDate", value: pickupDate }));
-        console.log(timeInputs, "timeInputs")
     }
     return swapPickupDropoff;
 }

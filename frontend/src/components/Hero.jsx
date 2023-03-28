@@ -15,6 +15,7 @@ const Hero = () => {
     console.log(timeInputs)
     const fetchCarList = useFetchCarList()
     const fetchAvailableCars = useFetchAvailableCars()
+    console.log(availableCars, 'availableCars')
 
     useEffect(() => {
         fetchCarList()
@@ -48,18 +49,18 @@ const Hero = () => {
                     </Link>
                 </div>
                 <div className='flex gap-5 md:gap-8 overflow-x-scroll hide-scroll md:flex-wrap'>
-                    {carList.slice(0, 4).map((car, index) => (
+                    {availableCars.slice(0, 4).map((car, index) => (
                         <CarCard key={index} {...car} page='home' />
                     ))}
                 </div>
                 <p className=' text-[#90A3BF] font-normal mt-8 mb-5 md:text-lg md:ml-5'>Recommended Cars</p>
                 <div className='flex flex-col gap-5 md:hidden'>
-                    {carList.slice(0, 5).map((car, index) => (
+                    {availableCars.slice(0, 5).map((car, index) => (
                         <CarCard key={index} {...car} />
                     ))}
                 </div>
                 <div className='flex-row flex-wrap gap-8 hidden md:flex'>
-                    {carList.slice(0, 8).map((car, index) => (
+                    {availableCars.slice(0, 8).map((car, index) => (
                         <CarCard key={index} {...car} />
                     ))}
                 </div>
