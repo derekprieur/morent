@@ -52,7 +52,7 @@ const Hero = () => {
                     </Link>
                 </div>
                 <div className='flex gap-5 md:gap-8 overflow-x-scroll hide-scroll md:flex-wrap'>
-                    {availableCars.slice(0, 4).map((car, index) => (
+                    {popularCars.slice(0, 4).map((car, index) => (
                         <CarCard key={index} {...car} page='home' />
                     ))}
                 </div>
