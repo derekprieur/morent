@@ -182,7 +182,9 @@ router.get('/api/cars/:id/isFavorited', verify, async (req, res, next) => {
 
 router.get('/api/popularcars', async (req, res) => {
     try {
-        const cars = await Car.find().sort({ favorites: 'desc' });
+        const cars = await Car.find()
+        console.log(cars);
+        cars.sort((a, b) => b.favorites.length - a.favorites.length);
         res.status(200).json(cars);
     } catch (error) {
         res.status(400).json({ message: 'Error getting popular cars', error });

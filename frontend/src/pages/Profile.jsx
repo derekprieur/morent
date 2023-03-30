@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useSelector } from "react-redux"
 
 import { carBanner } from "../assets"
@@ -5,9 +6,14 @@ import { Button, CarCard } from "../components"
 import useScrollToTop from '../utils/scrollToTop.js'
 
 const Profile = () => {
+    const [isEditMode, setIsEditMode] = useState(false)
     const user = useSelector(state => state.auth.user)
     const cars = useSelector(state => state.carList.carList)
     const { firstName, lastName, title, avatar } = user
+
+    const toggleEditMode = () => {
+        setIsEditMode(!isEditMode)
+    }
 
     useScrollToTop()
 
@@ -23,7 +29,7 @@ const Profile = () => {
                             <h2 className="text-xl font-bold capitalize">{firstName} {lastName}</h2>
                             <p className="text-[#1A202C] text-base font-light capitalize">{title}</p>
                         </div>
-                        <Button text='Edit Profile' />
+                        <Button text='Edit Profile' onClick={toggleEditMode} />
                     </div>
                 </div>
             </div>

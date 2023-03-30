@@ -1,6 +1,6 @@
 import { HiOutlineArrowNarrowUp, HiOutlineArrowNarrowDown } from 'react-icons/hi'
 
-const Button = ({ text, size, rounded, full, profileImage, type }) => {
+const Button = ({ text, size, rounded, full, profileImage, type, onClick }) => {
     if (text === 'My Profile') return (
         <button className='flex items-center justify-center gap-2 bg-[white] text-[#3563E9] py-4 rounded min-w-[100px] w-full text-center font-medium border border-[#C3D4E9]'>
             <img src={profileImage} alt="avatar" className='h-5 w-5 rounded-full' />
@@ -38,7 +38,7 @@ const Button = ({ text, size, rounded, full, profileImage, type }) => {
         <button type='submit' className={`bg-[#3563E9] text-white py-4 px-8 font-medium text-lg ${rounded ? 'rounded-xl' : 'rounded'} ${full && 'w-full md:w-fit'}`}>{text}</button>
     )
     return (
-        <button className='bg-[#3563E9] text-white py-[10px] px-5 rounded'>{text}</button>
+        <button className='bg-[#3563E9] text-white py-[10px] px-5 rounded' onClick={onClick}>{text}</button>
     )
 }
 

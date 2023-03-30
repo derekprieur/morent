@@ -10,8 +10,10 @@ import Filter from './Filter';
 import Footer from './Footer';
 import AddCarForm from './AddCarForm';
 import LogoutButton from './LogoutButton';
+import EditProfileForm from './EditProfileForm';
 
 export {
+    EditProfileForm,
     LogoutButton,
     AddCarForm,
     Footer,

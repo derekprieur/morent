@@ -9,10 +9,8 @@ import { useSwapPickupDropoff } from '../utils/swapPickupDropoff'
 import { useFetchPopularCars } from '../utils/fetchPopularCars'
 
 const Hero = () => {
-    const { carList } = useSelector(state => state.carList)
     const { popularCars } = useSelector(state => state.carList)
     const { availableCars } = useSelector(state => state.availableCars)
-    const { timeInputs } = useSelector(state => state.timeInputs)
     const swapPickupDropoff = useSwapPickupDropoff()
     const fetchCarList = useFetchCarList()
     const fetchAvailableCars = useFetchAvailableCars()
