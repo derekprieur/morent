@@ -20,12 +20,12 @@ const Search = () => {
     }, [])
 
     return (
-        <div className='flex bg-background h-full'>
+        <div className='flex bg-background h-full overflow-x-scroll'>
             <div className='hidden md:flex'>
                 <Sidebar />
             </div>
             <div className='py-8 px-6 md:px-8 flex-1 space-y-8 border-t'>
-                <div className='gap-8 md:gap-10 flex flex-col md:flex-row relative items-center'>
+                <div className='gap-8 md:gap-10 flex-col md:flex-row relative items-center hidden sm:flex overflow-x-hidden'>
                     <TimeCard text='Pick-Up' date='20 July 2022' time='07:00' />
                     <div className='absolute md:hidden top-32 left-[180px]' onClick={swapPickupDropoff}>
                         <Button text='arrows' />

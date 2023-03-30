@@ -56,7 +56,7 @@ const TimeCard = ({ text }) => {
                 )}
                 <h2 className='font-medium text-[#1A202C] text-xl'>{text}</h2>
             </div>
-            <div className='flex justify-between flex-wrap'>
+            <div className='flex sm:flex-row flex-col justify-between flex-wrap gap-2'>
                 <div className='flex flex-col gap-2'>
                     <h3 className='text-[#1A202C] font-bold text-xl'>Locations</h3>
                     <input

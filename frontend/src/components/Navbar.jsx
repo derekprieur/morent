@@ -13,9 +13,9 @@ import { setCurrentPage } from '../redux/currentPageSlice'
 const Navbar = () => {
     const user = useSelector(state => state.auth.user)
     const currentPage = useSelector(state => state.currentPage.currentPage)
-    const loginPageOpen = useSelector(state => state.auth.loginPageOpen)
     const dispatch = useDispatch()
-    const notHomePage = location.pathname.includes('search') || location.pathname.includes('profile') || location.pathname.includes('detail') || location.pathname.includes('login') || location.pathname.includes('add-car')
+    const homePage = location.pathname === '/'
+    console.log(homePage, 'homePage')
     const [mobileMenuVisible, setMobileMenuVisible] = useState(false)
 
     const mobileMenuClasses = mobileMenuVisible
@@ -30,7 +30,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className={`px-6 md:px-[60px] pt-8 md:py-7 bg-white ${notHomePage ? 'pb-8' : 'pb-36'}`}>
+            <div className={`px-6 md:px-[60px] pt-8 md:py-7 bg-white ${homePage ? 'pb-36' : 'pb-8'}`}>
                 <div className="flex justify-between mb-8 md:mb-0 items-center">
                     <Link to='/' onClick={() => dispatch(setCurrentPage('home'))}>
                         <img src={morent} alt="car" className='object-contain flex md:hidden' />
@@ -78,7 +78,7 @@ const Navbar = () => {
                 </div>
                 <div className={`justify-between md:hidden gap-4 ${currentPage === 'search cars' || location.pathname.includes('search') ? 'flex' : 'hidden'}`}>
                     <Input placeholder='Search something here' />
-                    <div className="w-12 h-12 border border-[#C3D4E966] flex items-center rounded-[10px] px-3 flex-col justify-between py-4">
+                    <div className="w-12 h-12 border border-[#C3D4E966] hidden custom375:flex items-center rounded-[10px] px-3 flex-col justify-between py-4">
                         <div className="border-b-2 border-[#3D5278] w-full relative">
                             <div className="border-2 w-2 h-2 bg-white rounded-full absolute border-[#3D5278] top-[-3px] left-1" />
                         </div>

@@ -14,6 +14,9 @@ module.exports = {
         '-1/2': '-50%',
         '-110': '-110%',
       },
+      screens: {
+        custom375: '375px',
+      },
     },
   },
   plugins: [],

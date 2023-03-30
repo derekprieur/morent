@@ -37,7 +37,7 @@ const Hero = () => {
                 <HeroCard alt />
             </div>
             <div className='px-6 md:px-0'>
-                <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex flex-col md:flex-row relative items-center md:justify-center'>
+                <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex-col md:flex-row relative items-center md:justify-center hidden sm:flex'>
                     <TimeCard text='Pick-Up' />
                     <div className='absolute md:hidden top-32 flex justify-center' onClick={swapPickupDropoff}>
                         <Button text='arrows' />
@@ -47,7 +47,7 @@ const Hero = () => {
                     </div>
                     <TimeCard text='Drop-Off' />
                 </div>
-                <div className='flex justify-between mt-8 md:mt-11 mb-5'>
+                <div className='flex justify-between mt-36 md:mt-11 mb-5'>
                     <p className=' text-[#90A3BF] font-normal md:text-lg md:ml-5'>Popular Cars</p>
                     <Link to='/search'>
                         <button className=' text-[#3563E9] font-medium text-sm md:text-lg'>View All</button>
