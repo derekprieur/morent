@@ -21,6 +21,12 @@ const Detail = () => {
         }
     }, [])
 
+    const selectedCar = carList.find(car => car._id === id)
+
+    if (!selectedCar) {
+        return <></>;
+    }
+
     return (
         <div className='flex bg-background h-full overflow-x-hidden'>
             <div className='hidden md:flex'>
@@ -30,16 +36,16 @@ const Detail = () => {
                 <div className='flex flex-col md:flex-row justify-start'>
                     <div className='flex flex-col'>
                         <div className='pt-8 pb-6 md:px-8 rounded-xl flex justify-center'>
-                            <img src={detail1} alt="car-image" className='md:w-[492px] md:h-[360px] object-cover' />
+                            <img src={selectedCar.images[0]} alt="car-image" className='md:w-[492px] md:h-[360px] object-cover' />
                         </div>
                         <div className='flex gap-5 w-full justify-center md:px-8 pb-8'>
-                            <img src={detail1} alt="" className='w-24 h-16 rounded-xl' />
-                            <img src={detail1} alt="" className='w-24 h-16 rounded-xl' />
-                            <img src={detail1} alt="" className='w-24 h-16 rounded-xl' />
+                            {selectedCar.images.map((image, index) => (
+                                <img key={index} src={image} alt="" className='w-24 h-16 rounded-xl' />
+                            ))}
                         </div>
                     </div>
                     <div className='bg-white p-4 md:p-6 rounded-xl md:mt-8 max-w-[492px]'>
-                        <h3 className='font-semibold text-[#1A202C] text-xl md:text-3xl pb-2'>Nissan GT - R</h3>
+                        <h3 className='font-semibold text-[#1A202C] text-xl md:text-3xl pb-2'>{selectedCar?.title}</h3>
                         <div className='flex gap-1 items-center mb-4'>
                             <AiFillStar className='text-[#FBBF24] text-sm md:text-lg' />
                             <AiFillStar className='text-[#FBBF24] text-sm md:text-lg' />
@@ -52,30 +58,29 @@ const Detail = () => {
                         <div className='flex justify-between mb-4'>
                             <div className='flex gap-6 w-[50%]'>
                                 <h4 className='text-[#90A3BF] text-sm md:text-lg font-light'>Type Car</h4>
-                                <p className='text-sm md:text-lg font-medium'>Sport</p>
+                                <p className='text-sm md:text-lg font-medium'>{selectedCar.type}</p>
                             </div>
                             <div className='flex gap-6 w-[50%]'>
                                 <h4 className='text-[#90A3BF] text-sm md:text-lg font-light'>Capacity</h4>
-                                <p className='text-sm md:text-lg font-medium'>2 Person</p>
+                                <p className='text-sm md:text-lg font-medium'>{selectedCar.capacity} person</p>
                             </div>
                         </div>
                         <div className='flex pb-8'>
                             <div className='flex gap-6 w-[50%]'>
                                 <h4 className='text-[#90A3BF] text-sm md:text-lg font-light'>Steering</h4>
-                                <p className='text-sm md:text-lg font-medium'>Manual</p>
+                                <p className='text-sm md:text-lg font-medium'>{selectedCar?.transmission}</p>
                             </div>
                             <div className='flex gap-6 w-[50%]'>
                                 <h4 className='text-[#90A3BF] text-sm md:text-lg font-light'>Gasoline</h4>
-                                <p className='text-sm md:text-lg font-medium'>70L</p>
+                                <p className='text-sm md:text-lg font-medium'>{selectedCar?.gasMileage}L</p>
                             </div>
                         </div>
-                        <div className='flex justify-between md:mt-12'>
+                        <div className='flex justify-between items-center md:mt-12'>
                             <div className='flex flex-col gap-1'>
                                 <div className='flex items-center gap-1'>
-                                    <p className='text-2xl md:text-3xl font-bold'>$80.00/</p>
-                                    <span className='text-[#90A3BF] text-sm md:text-base'>days</span>
+                                    <p className='text-2xl md:text-3xl font-bold'>${selectedCar?.rentPrice}.00/</p>
+                                    <span className='text-[#90A3BF] text-sm md:text-base'>day</span>
                                 </div>
-                                <span className='text-[#90A3BF] text-sm md:text-base line-through'>$100.00</span>
                             </div>
                             <Link to={`/rent/${id}`}>
                                 <Button text='Rent Now' size='large' />

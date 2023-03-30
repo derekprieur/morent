@@ -43,7 +43,7 @@ const TimeCard = ({ text }) => {
     }
 
     return (
-        <div className='bg-white w-full rounded-[10px] p-4 max-w-md md:max-w-2xl'>
+        <div className='bg-white w-full rounded-[10px] p-4 max-w-md md:max-w-2xl flex-shrink-0'>
             <div className='flex items-center gap-2 mb-6'>
                 {text === 'Pick-Up' ? (
                     <div className='w-4 h-4 rounded-full flex items-center justify-center bg-[#3563E94D]'>
@@ -56,7 +56,7 @@ const TimeCard = ({ text }) => {
                 )}
                 <h2 className='font-medium text-[#1A202C] text-xl'>{text}</h2>
             </div>
-            <div className='flex justify-between'>
+            <div className='flex justify-between flex-wrap'>
                 <div className='flex flex-col gap-2'>
                     <h3 className='text-[#1A202C] font-bold text-xl'>Locations</h3>
                     <input
