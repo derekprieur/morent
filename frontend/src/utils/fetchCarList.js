@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const getCars = async () => {
     try {
-        const response = await axios.get('http://localhost:3000/api/cars');
+        const response = await axios.get(`https://morent.onrender.com/api/cars`);
         return response.data;
     } catch (error) {
         console.error(error);

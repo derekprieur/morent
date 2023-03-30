@@ -21,7 +21,7 @@ const Input = ({ placeholder, rounded }) => {
 
     const fetchCars = async (searchQuery) => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/searchcars`, {
+            const response = await axios.get(`https://morent.onrender.com/api/searchcars`, {
                 params: { q: searchQuery }
             });
             dispatch(setCars(response.data));

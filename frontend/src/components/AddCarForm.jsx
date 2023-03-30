@@ -75,7 +75,7 @@ const AddCarForm = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/api/addcar", carData, {
+            const response = await axios.post(`${VITE_APP_BACKEND_URL}api/addcar`, carData, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "multipart/form-data",

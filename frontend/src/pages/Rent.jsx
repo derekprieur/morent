@@ -39,7 +39,7 @@ const Rent = () => {
         };
 
         try {
-            const response = await axios.patch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/rentcar`, rentData, {
+            const response = await axios.patch(`https://morent.onrender.com/api/rentcar`, rentData, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json",

@@ -23,7 +23,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/login`, { username, password })
+            const res = await axios.post(`https://morent.onrender.com/api/login`, { username, password })
             localStorage.setItem('accessToken', res.data.accessToken)
             dispatch(setUser(res.data.user))
             dispatch(setLoginPageOpen(false))
@@ -45,7 +45,7 @@ const Login = () => {
             formData.append("title", title);
             formData.append("file", file);
 
-            const res = await axios.post(`http://localhost:3000/api/signup`, formData, {
+            const res = await axios.post(`${VITE_APP_BACKEND_URL}api/signup`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

@@ -19,7 +19,7 @@ const CarCard = ({ _id, type, gasMileage, transmission, originalPrice, page, tit
     const toggleFavorite = async () => {
         if (!user) return navigate('/login')
         try {
-            const response = await axios.patch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/cars/${carId}/toggleFavorite`, {}, {
+            const response = await axios.patch(`https://morent.onrender.com/api/cars/${carId}/toggleFavorite`, {}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -37,7 +37,7 @@ const CarCard = ({ _id, type, gasMileage, transmission, originalPrice, page, tit
             return;
         }
         try {
-            const response = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/cars/${carId}/isfavorited`, {
+            const response = await axios.get(`https://morent.onrender.com/api/cars/${carId}/isfavorited`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,

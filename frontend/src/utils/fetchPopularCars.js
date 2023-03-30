@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const getPopularCars = async () => {
     try {
-        const response = await axios.get('http://localhost:3000/api/popularcars');
+        const response = await axios.get(`https://morent.onrender.com/api/popularcars`);
         return response.data;
     } catch (error) {
         console.error(error);
