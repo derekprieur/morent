@@ -54,7 +54,7 @@ const CarCard = ({ _id, type, gasMileage, transmission, originalPrice, page, tit
     }, [user]);
 
     if (page === 'home') return (
-        <div className='bg-white w-full min-w-[280px] rounded-[10px] p-4 md:p-6 md:max-w-sm md:mx-0 md:flex md:flex-col md:justify-between' >
+        <div className='bg-white w-full min-w-[280px] rounded-[10px] p-4 md:p-6 md:max-w-[300px] md:mx-0 md:flex md:flex-col md:justify-between' >
             <div className='flex items-start justify-between'>
                 <div className='flex flex-col gap-1'>
                     <h2 className='font-medium text-[#1A202C] text-xl cursor-pointer' onClick={() => navigate(`/detail/${carId}`)}>{title}</h2>
@@ -66,15 +66,15 @@ const CarCard = ({ _id, type, gasMileage, transmission, originalPrice, page, tit
                 <img src={images[0]} alt="" className='object-cover w-full h-40 md:w-full md:h-40 rounded-md' />
                 <div className='text-[#90A3BF] mt-12 gap-4 flex flex-row md:justify-center'>
                     <div className='flex items-center gap-1'>
-                        <RiGasStationFill className='text-base md:text-2xl' />
+                        <RiGasStationFill className='text-base md:text-base' />
                         <p>{gasMileage || 90}L</p>
                     </div>
                     <div className='flex items-center gap-1'>
-                        <GiSteeringWheel className='text-base md:text-2xl' />
+                        <GiSteeringWheel className='text-base md:text-base' />
                         <p>{transmission || 'Manual'}</p>
                     </div>
                     <div className='flex items-center gap-1 flex-shrink-0'>
-                        <MdPeopleAlt className='text-base md:text-2xl' />
+                        <MdPeopleAlt className='text-base md:text-base' />
                         <p>{capacity} People</p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ const CarCard = ({ _id, type, gasMileage, transmission, originalPrice, page, tit
         </div>
     )
     else return (
-        <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-md md:max-w-sm mx-auto md:mx-0 md:flex md:flex-col md:justify-between'>
+        <div className='bg-white w-full rounded-[10px] p-4 md:p-6 max-w-md md:max-w-[300px] mx-auto md:mx-0 md:flex md:flex-col md:justify-between'>
             <div className='flex items-start justify-between'>
                 <div className='flex flex-col gap-1'>
                     <h2 className='font-medium text-[#1A202C] text-xl cursor-pointer' onClick={() => navigate(`/detail/${carId}`)}>{title}</h2>
@@ -99,18 +99,18 @@ const CarCard = ({ _id, type, gasMileage, transmission, originalPrice, page, tit
                 {isFavorited ? <AiFillHeart className='text-2xl text-[#ED3F3F] cursor-pointer' onClick={toggleFavorite} /> : <AiOutlineHeart className='text-2xl text-[#90A3BF] cursor-pointer' onClick={toggleFavorite} />}
             </div>
             <div className='my-8 flex md:flex-col justify-between items-center'>
-                <img src={images[0]} alt="" className='object-cover w-60 h-24 md:w-full md:h-40 rounded-md' />
+                <img src={images[0]} alt="" className='object-cover w-44 h-24 540:h-32 540:w-64 md:w-full md:h-40 rounded-md' />
                 <div className='text-[#90A3BF] md:mt-12 gap-4 flex flex-col md:flex-row md:justify-center'>
                     <div className='flex items-center gap-1'>
-                        <RiGasStationFill className='text-xl md:text-2xl' />
+                        <RiGasStationFill className='text-xl md:text-base' />
                         <p>{gasMileage || 90}L</p>
                     </div>
                     <div className='flex items-center gap-1'>
-                        <GiSteeringWheel className='text-xl md:text-2xl' />
+                        <GiSteeringWheel className='text-xl md:text-base' />
                         <p>{transmission || 'Manual'}</p>
                     </div>
                     <div className='flex items-center gap-1 md:flex-shrink-0'>
-                        <MdPeopleAlt className='text-xl md:text-2xl' />
+                        <MdPeopleAlt className='text-xl md:text-base' />
                         <p>{capacity} People</p>
                     </div>
                 </div>

@@ -31,11 +31,15 @@ const Hero = () => {
                 <HeroCard size='small' />
             </div>
             <div className='hidden md:flex mt-8 gap-8 md:justify-center'>
-                <HeroCard size='large' />
-                <HeroCard alt />
+                <div>
+                    <HeroCard size='large' />
+                </div>
+                <div className='hidden lg:flex'>
+                    <HeroCard alt />
+                </div>
             </div>
             <div className='px-6 md:px-0'>
-                <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex-col md:flex-row relative items-center md:justify-center hidden sm:flex'>
+                <div className='mt-36 md:mt-8 gap-8 md:gap-10 flex-col xl:flex-row relative items-center md:justify-center hidden sm:flex'>
                     <TimeCard text='Pick-Up' />
                     <div className='absolute md:hidden top-32 flex justify-center' onClick={swapPickupDropoff}>
                         <Button text='arrows' />
@@ -51,7 +55,7 @@ const Hero = () => {
                         <button className=' text-[#3563E9] font-medium text-sm md:text-lg'>View All</button>
                     </Link>
                 </div>
-                <div className='flex gap-5 md:gap-8 overflow-x-scroll hide-scroll md:flex-wrap'>
+                <div className='flex gap-5 md:gap-8 overflow-x-scroll hide-scroll md:flex-wrap md:justify-center'>
                     {popularCars.slice(0, 4).map((car, index) => (
                         <CarCard key={index} {...car} page='home' />
                     ))}
@@ -62,7 +66,7 @@ const Hero = () => {
                         <CarCard key={index} {...car} />
                     ))}
                 </div>
-                <div className='flex-row flex-wrap gap-8 hidden md:flex'>
+                <div className='flex-row flex-wrap gap-8 hidden md:flex md:justify-center'>
                     {availableCars.slice(0, 8).map((car, index) => (
                         <CarCard key={index} {...car} />
                     ))}

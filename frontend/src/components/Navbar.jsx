@@ -78,7 +78,7 @@ const Navbar = () => {
                 </div>
                 <div className={`justify-between md:hidden gap-4 ${currentPage === 'search cars' || location.pathname.includes('search') ? 'flex' : 'hidden'}`}>
                     <Input placeholder='Search something here' />
-                    <div className="w-12 h-12 border border-[#C3D4E966] hidden custom375:flex items-center rounded-[10px] px-3 flex-col justify-between py-4">
+                    <div className="w-12 h-12 border border-[#C3D4E966] hidden 375:flex items-center rounded-[10px] px-3 flex-col justify-between py-4">
                         <div className="border-b-2 border-[#3D5278] w-full relative">
                             <div className="border-2 w-2 h-2 bg-white rounded-full absolute border-[#3D5278] top-[-3px] left-1" />
                         </div>
